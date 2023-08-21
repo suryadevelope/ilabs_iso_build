@@ -8,7 +8,7 @@ COPY /extras /custom-packages/extras
 
 RUN apk upgrade && \
     apk add alpine-sdk build-base apk-tools alpine-conf openssl \
-        busybox fakeroot syslinux xorriso squashfs-tools sudo && \
+        busybox fakeroot syslinux xorriso squashfs-tools sudo 
     
 
 USER build
