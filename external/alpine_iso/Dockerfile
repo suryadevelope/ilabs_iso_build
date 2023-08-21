@@ -11,7 +11,7 @@ RUN apk upgrade && \
         busybox fakeroot syslinux xorriso squashfs-tools sudo && \
     adduser -s /bin/ash -G abuild -D -h /home/build -u ${USER_ID} build && \
     mkdir -p /home/build/.abuild && chown build /home/build/.abuild && \
-    openssl aes-256-cbc -d -in /abuild-keys/vmconsole-dev.rsa.enc -out /home/build/.abuild/vmconsole-dev.rsa -k "$RSA_KEY_PASSPHRASE" -pbkdf2 && \
+    openssl aes-256-cbc -d -in /abuild-keys/vmconsole-dev.rsa.enc -out /home/build/.abuild/vmconsole-dev.rsa -k "$RSA_KEY_PASSPHRASE" -pbkdf2
    
 
 USER build
