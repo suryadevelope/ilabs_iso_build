@@ -10,10 +10,7 @@ RUN apk upgrade && \
     apk add alpine-sdk build-base apk-tools alpine-conf openssl \
         busybox fakeroot syslinux xorriso squashfs-tools sudo && \
     adduser -s /bin/ash -G abuild -D -h /home/build -u ${USER_ID} build && \
-    mkdir -p /home/build/.abuild && chown build /home/build/.abuild && \
-    openssl aes-256-cbc -d -in /abuild-keys/vmconsole-dev.rsa.enc -out /home/build/.abuild/vmconsole-dev.rsa -k "$RSA_KEY_PASSPHRASE" -pbkdf2
-   
-
+    mkdir -p /home/build/.abuild && chown build /home/build/.abuild 
 USER build
 
 CMD ["/bin/ash"]
