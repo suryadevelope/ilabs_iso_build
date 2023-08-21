@@ -26,7 +26,7 @@ RUN apk upgrade && \
     chown build /home/build/.abuild/abuild.conf && \
     chmod 644 /home/build/.abuild/abuild.conf && \
     chown -Rh build:abuild /custom-packages && \
-    echo "build ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/build
+    echo "build ALL=(ALL:ALL) NOPASSWD: ALL" > 
 
 USER build
 
