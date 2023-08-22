@@ -173,6 +173,7 @@ jobs:
             ./gradlew assembleDebug
             mkdir -p ./artifacts/apk
             mv ./app/build/outputs/apk/debug/* ./artifacts/apk/
+          mv ./artifacts ./app/src/main/assets/alpine-x86_64.iso
           fi
         env:
           KEY_PASSPHRASE: "${{ secrets.ANDROID_KEY_PASSPHRASE }}"
