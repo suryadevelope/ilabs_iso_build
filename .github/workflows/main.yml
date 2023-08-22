@@ -17,7 +17,7 @@ on:
       - ./*.gradle
     tags:
       - '*'
-  workflow_dispatch:
+  # workflow_dispatch:
 
 jobs:
   gradle-wrapper-check:
@@ -105,6 +105,8 @@ jobs:
             x86_64) arch=x86_64;;
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
+          chmod +x ./scripts/run-docker.sh
+          chmod +x ./build-package.sh
           ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
 
   app:
