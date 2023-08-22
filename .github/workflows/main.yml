@@ -108,6 +108,11 @@ jobs:
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
           ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: vmConsole-git-${{ steps.build-id.outputs.git_rev }}
+          path: ./app/src/main/assets/alpine-x86_64.iso
 
   app:
     name: Build application
@@ -188,6 +193,7 @@ jobs:
 
   publish:
     name: Publish release
+    needs: [app]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
     steps:
