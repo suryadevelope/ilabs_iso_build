@@ -66,6 +66,11 @@ jobs:
           make build-docker OUTPUT_DIR=$(realpath ../../app/src/main/assets)
         env:
           RSA_KEY_PASSPHRASE: ${{ secrets.ABUILD_KEY_PASSPHRASE }}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: alpine-x86_64.iso
+          path: ./app/src/main/assets/alpine-x86_64.iso
 
   libvmc:
     name: Build libVMC.so
@@ -108,11 +113,7 @@ jobs:
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
           ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: vmConsole-git-${{ steps.build-id.outputs.git_rev }}
-          path: ./app/src/main/assets/alpine-x86_64.iso
+     
 
   app:
     name: Build application
