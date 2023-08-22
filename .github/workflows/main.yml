@@ -18,6 +18,7 @@ on:
     tags:
       - '*'
   # workflow_dispatch:
+    
 
 jobs:
   gradle-wrapper-check:
