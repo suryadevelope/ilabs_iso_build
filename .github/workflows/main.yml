@@ -30,6 +30,10 @@ jobs:
       - name: Validation
         uses: gradle/wrapper-validation-action@v1
 
+      - name: sudo_installs
+        run: sudo apt-get install libglib2.0-dev
+
+
   alpine-iso:
     name: Build Alpine Linux ISO
     runs-on: ubuntu-latest
