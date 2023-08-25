@@ -631,7 +631,6 @@ while (($# > 0)); do
 		mkdir -p "$PACKAGE_PACKAGEDIR" \
 			"$PACKAGE_TMPDIR" \
 			"$PACKAGE_CACHEDIR"
-		echo "surya test $PACKAGE_BUILDDIR $PACKAGE_PACKAGEDIR"
 
 		if [ -n "$PACKAGE_BUILD_IN_SRC" ]; then
 			ln -sfr "$PACKAGE_SRCDIR" "$PACKAGE_BUILDDIR"
@@ -710,7 +709,9 @@ while (($# > 0)); do
 
 		# Create a pkg-config wrapper. We use path to host pkg-config to
 		# avoid picking up a cross-compiled pkg-config later on.
+
 		export PKG_CONFIG_LIBDIR="$PACKAGE_INSTALL_PREFIX/lib/pkgconfig"
+		echo "surya test11 $PKG_CONFIG_LIBDIR"
 		mkdir -p "$PKG_CONFIG_LIBDIR"
 		cat > "$PKG_CONFIG" <<-HERE
 			#!/bin/sh
@@ -745,6 +746,7 @@ while (($# > 0)); do
 
 		cd "$PACKAGE_BUILDDIR"
 		builder_step_post_make_install
+		echo "surya test $PACKAGE_BUILDDIR $PACKAGE_NAME"
 
 		mkdir -p "/data/data/.built-packages"
 		echo "$PACKAGE_VERSION" > "/data/data/.built-packages/$PACKAGE_NAME"
