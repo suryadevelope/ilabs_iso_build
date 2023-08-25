@@ -712,6 +712,7 @@ while (($# > 0)); do
 
 		export PKG_CONFIG_LIBDIR="$PACKAGE_INSTALL_PREFIX/lib/pkgconfig"
 
+		mkdir -p data && cd .. && mkdir -p data && cd data
 		ls
 		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG"
 		mkdir -p "$PKG_CONFIG_LIBDIR"
