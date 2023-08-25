@@ -711,9 +711,9 @@ while (($# > 0)); do
 		# avoid picking up a cross-compiled pkg-config later on.
 
 		export PKG_CONFIG_LIBDIR="$PACKAGE_INSTALL_PREFIX/lib/pkgconfig"
-		echo "surya test11 $PKG_CONFIG_LIBDIR"
+		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG"
 		sudo mkdir -p "$PKG_CONFIG_LIBDIR"
-		cat > "$PKG_CONFIG" <<-HERE
+		sudo cat > "$PKG_CONFIG" <<-HERE
 			#!/bin/sh
 			export PKG_CONFIG_DIR=
 			export PKG_CONFIG_LIBDIR="$PKG_CONFIG_LIBDIR"
@@ -748,7 +748,7 @@ while (($# > 0)); do
 		builder_step_post_make_install
 		echo "surya test $PACKAGE_BUILDDIR $PACKAGE_NAME"
 
-		mkdir -p "/data/data/.built-packages"
+		sudo mkdir -p "/data/data/.built-packages"
 		echo "$PACKAGE_VERSION" > "/data/data/.built-packages/$PACKAGE_NAME"
 
 		echo "finished building of '$PACKAGE_NAME'"
