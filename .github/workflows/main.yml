@@ -126,7 +126,8 @@ jobs:
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
         
-          ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
+          ./scripts/run-docker.sh 
+          ./build-package.sh -f -a all qemu-system
      
 
   app:
