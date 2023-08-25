@@ -106,15 +106,13 @@ jobs:
         run: |
           cd ./external/libvmc
           sudo apt-get install build-essential zlib1g-dev pkg-config libglib2.0-dev binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev
-
-          # Ensure that built libVMC.so won't be mixed with prebuilt.
-          find ./jniLibs -type f -delete
-          
-          sudo apt-get install libglib2.0-dev
-          
+  
           export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
           pkg-config --atleast-version=2.48 gthread-2.0; echo $?
 
+          # Ensure that built libVMC.so won't be mixed with prebuilt.
+          find ./jniLibs -type f -delete
+                  
           case "${{ matrix.abi }}" in
             arm64-v8a) arch=aarch64;;
             armeabi-v7a) arch=arm;;
@@ -122,8 +120,7 @@ jobs:
             x86_64) arch=x86_64;;
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
-          chmod +x ./scripts/run-docker.sh
-          chmod +x ./build-package.sh
+        
           ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
      
 
