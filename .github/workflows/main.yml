@@ -97,8 +97,42 @@ jobs:
       - name: Setup build environment
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
+
+          wget https://download-fallback.gnome.org/sources/glib/2.48/glib-2.48.1.tar.xz
+          tar xvf glib-2.48.1.tar.xz
+          cd glib-2.48.1
+          ./configure
+          make -j
+          make install
+          sudo apt install gettext
+          wget https://sourceforge.net/projects/pcre/files/pcre/8.32/pcre-8.32.tar.gz/download
+          tar -zxvf pcre-8.32.tar.gz  
+          cd pcre-8.32
+          ./configure 
+          make
+          sudo make install 
+          sudo ./configure --with-pcre=internal
+          sudo make
+          sudo make install
+          cd ..
+          mv ./external/libvmc/gdbusmessage.c /glib-2.48.1/gio/gdbusmessage.c
+          mv ./external/libvmc/gdbusauth.c /glib-2.48.1/gio/gdbusauth.c
+          wget https://www.cairographics.org/releases/pixman-0.42.2.tar.gz
+          if [ -d "build" ]; then
+          rm -rf build/
+          fi
+          mkdir build
+          cd build && meson --prefix=/usr --buildtype=release && ninja
+
+          cd build
+          ninja test
+          sudo ninja install
+
+
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
+
+
           
          
          
