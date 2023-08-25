@@ -122,7 +122,7 @@ jobs:
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
         
-          sudo./scripts/run-docker.sh 
+          sudo ./scripts/run-docker.sh 
           sudo ./build-package.sh -a "$arch" qemu-system
      
 
