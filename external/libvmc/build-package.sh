@@ -711,8 +711,8 @@ while (($# > 0)); do
 		# avoid picking up a cross-compiled pkg-config later on.
 
 		export PKG_CONFIG_LIBDIR="$PACKAGE_INSTALL_PREFIX/lib/pkgconfig"
-		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG"
 		sudo mkdir -p "$PKG_CONFIG_LIBDIR"
+		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG  ls -l $PKG_CONFIG"
 		sudo cat > "$PKG_CONFIG" <<-HERE
 			#!/bin/sh
 			export PKG_CONFIG_DIR=
