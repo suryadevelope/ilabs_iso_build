@@ -286,6 +286,7 @@ builder_setup_meson() {
 
 # Configure the package.
 builder_step_configure() {
+	echo "${PACKAGE_SRCDIR}"
 	if [ -f "$PACKAGE_SRCDIR/CMakeLists.txt" ]; then
 		builder_setup_cmake
 
@@ -713,9 +714,9 @@ while (($# > 0)); do
 		export PKG_CONFIG_LIBDIR="$PACKAGE_INSTALL_PREFIX/lib/pkgconfig"
 
 		
-		ls
 		mkdir -p "$PKG_CONFIG_LIBDIR"
 		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG"
+		ls
 		cat > "$PKG_CONFIG" <<-HERE
 			#!/bin/sh
 			export PKG_CONFIG_DIR=
