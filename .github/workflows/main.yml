@@ -106,11 +106,13 @@ jobs:
       - name: Compile QEMU package
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
+          sudo -s
           cd ./external/libvmc
           sudo apt install -y libglib2.0-dev
           sudo apt install -y libpixman-1-dev
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
+          
 
 
           # Ensure that built libVMC.so won't be mixed with prebuilt.
@@ -124,7 +126,7 @@ jobs:
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
         
-          sudo ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
+          ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
      
 
   app:
