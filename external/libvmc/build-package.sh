@@ -606,11 +606,14 @@ while (($# > 0)); do
 
 		if [ "$CONFIG_BUILDER_SKIP_DEPCHECK" != "true" ]; then
 			ls -l "$BUILDER_SCRIPTDIR/scripts/buildorder.py"
+			echo "above permission status and below change permission"
 			sudo chmod +x "$BUILDER_SCRIPTDIR/scripts/buildorder.py"
 			while read -r dep; do
 				echo "Building dependency $dep if necessary..."
 				"$BUILDER_SCRIPTDIR/build-package.sh" -a "$PACKAGE_TARGET_ARCH" -s "$dep"
 			done < <("$BUILDER_SCRIPTDIR/scripts/buildorder.py" "$PACKAGE_BUILDER_DIR")
+			echo "python file executed"
+
 		fi
 
 		if [ "$CONFIG_BUILDER_FORCE" != "true" ] && [ -e "/data/data/.built-packages/$PACKAGE_NAME" ]; then
