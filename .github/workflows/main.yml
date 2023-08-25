@@ -107,6 +107,9 @@ jobs:
       - name: Compile QEMU package
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
+          sudo apt-get update
+          sudo apt-get install libglib2.0-dev libgthread-2.0-dev
+          sudo dnf install glib2-devel gthread2-devel
           cd ./external/libvmc
          
           chmod +x ./scripts/run-docker.sh
