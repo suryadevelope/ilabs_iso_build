@@ -608,8 +608,8 @@ while (($# > 0)); do
 			while read -r dep; do
 				echo "Building dependency $dep if necessary..."
 				"$BUILDER_SCRIPTDIR/build-package.sh" -a "$PACKAGE_TARGET_ARCH" -s "$dep"
-			echo "sudo chmod 755 $BUILDER_SCRIPTDIR/scripts/buildorder.py"
-			done < <("$BUILDER_SCRIPTDIR/scripts/buildorder.py" "$PACKAGE_BUILDER_DIR")
+			# echo "sudo chmod 755 $BUILDER_SCRIPTDIR/scripts/buildorder.py"
+			done < <("python $BUILDER_SCRIPTDIR/scripts/buildorder.py" "$PACKAGE_BUILDER_DIR")
 		fi
 
 		if [ "$CONFIG_BUILDER_FORCE" != "true" ] && [ -e "/data/data/.built-packages/$PACKAGE_NAME" ]; then
