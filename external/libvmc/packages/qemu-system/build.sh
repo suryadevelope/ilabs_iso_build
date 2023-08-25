@@ -1,7 +1,7 @@
 PACKAGE_VERSION="7.0.0"
 PACKAGE_SRCURL="https://download.qemu.org/qemu-${PACKAGE_VERSION}.tar.xz"
 PACKAGE_SHA256="f6b375c7951f728402798b0baabb2d86478ca53d44cedbefabbe1c46bf46f839"
-PACKAGE_DEPENDS="glib, libiconv, libslirp, pixman, zlib, glib, gthread"
+PACKAGE_DEPENDS="glib, libiconv, libslirp, pixman, zlib"
 PACKAGE_BUILD_IN_SRC="true"
 
 builder_step_configure() {
@@ -15,6 +15,8 @@ builder_step_configure() {
 	# Note: using --disable-stack-protector since stack protector
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
+	sudo apt-get install build-essential pkg-config libglib2.0-dev  libgtk2.0-dev
+	echo "surya build setup"
 	./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
 		--cross-prefix="${PACKAGE_TARGET_PLATFORM}-" \
