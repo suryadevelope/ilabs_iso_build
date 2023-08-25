@@ -116,17 +116,7 @@ jobs:
           sudo ./configure --with-pcre=internal
           sudo make
           sudo make install
-          cd ..
-          wget https://www.cairographics.org/releases/pixman-0.42.2.tar.gz
-          if [ -d "build" ]; then
-          rm -rf build/
-          fi
-          mkdir build
-          cd build && meson --prefix=/usr --buildtype=release && ninja
-
-          cd build
-          ninja test
-          sudo ninja install
+          
 
 
           cd ./external/libvmc/scripts
