@@ -101,6 +101,8 @@ jobs:
           wget https://download-fallback.gnome.org/sources/glib/2.48/glib-2.48.1.tar.xz
           tar xvf glib-2.48.1.tar.xz
           cd glib-2.48.1
+          mv ./external/libvmc/gdbusmessage.c /gio/gdbusmessage.c
+          mv ./external/libvmc/gdbusauth.c /gio/gdbusauth.c
           ./configure
           make -j
           make install
@@ -114,8 +116,6 @@ jobs:
           sudo make
           sudo make install
           cd ..
-          mv ./external/libvmc/gdbusmessage.c /glib-2.48.1/gio/gdbusmessage.c
-          mv ./external/libvmc/gdbusauth.c /glib-2.48.1/gio/gdbusauth.c
           wget https://www.cairographics.org/releases/pixman-0.42.2.tar.gz
           if [ -d "build" ]; then
           rm -rf build/
