@@ -286,7 +286,7 @@ builder_setup_meson() {
 
 # Configure the package.
 builder_step_configure() {
-	echo "surya => ${PACKAGE_SRCDIR}"
+
 	if [ -f "$PACKAGE_SRCDIR/CMakeLists.txt" ]; then
 		builder_setup_cmake
 
@@ -715,8 +715,6 @@ while (($# > 0)); do
 
 		
 		mkdir -p "$PKG_CONFIG_LIBDIR"
-		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG"
-		ls
 		cat > "$PKG_CONFIG" <<-HERE
 			#!/bin/sh
 			export PKG_CONFIG_DIR=
@@ -724,31 +722,47 @@ while (($# > 0)); do
 			exec $(command -v pkg-config) "\$@"
 		HERE
 		chmod +x "$PKG_CONFIG"
+		echo "surya test11 $PACKAGE_SRCDIR"
+
 
 		builder_step_extract_package
 
 		cd "$PACKAGE_SRCDIR"
+		echo "surya test12 $PACKAGE_BUILDDIR"
 		builder_step_post_extract_package
 
+
 		cd "$PACKAGE_SRCDIR"
+		echo "surya test13 $PACKAGE_BUILDDIR"
 		builder_step_patch_package
 
+
 		cd "$PACKAGE_SRCDIR"
+		echo "surya test14 $PACKAGE_BUILDDIR"
 		builder_step_pre_configure
 
+
 		cd "$PACKAGE_BUILDDIR"
+		echo "surya test15 $PACKAGE_BUILDDIR"
 		builder_step_configure
 
+
 		cd "$PACKAGE_BUILDDIR"
+		echo "surya test16 $PACKAGE_BUILDDIR"
 		builder_step_post_configure
 
-		cd "$PACKAGE_BUILDDIR"
-		builder_step_make
 
 		cd "$PACKAGE_BUILDDIR"
+		echo "surya test17 $PACKAGE_BUILDDIR"
+		builder_step_make
+
+
+		cd "$PACKAGE_BUILDDIR"
+		echo "surya test17 $PACKAGE_BUILDDIR"
 		builder_step_make_install
 
 		cd "$PACKAGE_BUILDDIR"
+		echo "surya test17 $PACKAGE_BUILDDIR"
 		builder_step_post_make_install
 		echo "surya test $PACKAGE_BUILDDIR $PACKAGE_NAME"
 
