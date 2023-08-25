@@ -111,8 +111,7 @@ jobs:
          
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
-          mkdir -p /data/data/sylirre.vmconsole/files/lib/pkgconfig
-          # Ensure that built libVMC.so won't be mixed with prebuilt.
+           # Ensure that built libVMC.so won't be mixed with prebuilt.
           find ./jniLibs -type f -delete
                   
           case "${{ matrix.abi }}" in
@@ -123,8 +122,8 @@ jobs:
             *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
           esac
         
-          ./scripts/run-docker.sh 
-          ./build-package.sh -a "$arch" qemu-system
+          sudo./scripts/run-docker.sh 
+          sudo ./build-package.sh -a "$arch" qemu-system
      
 
   app:
