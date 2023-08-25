@@ -749,7 +749,7 @@ while (($# > 0)); do
 		builder_step_post_make_install
 		echo "surya test $PACKAGE_BUILDDIR $PACKAGE_NAME"
 
-		sudo mkdir -p "/data/data/.built-packages"
+		mkdir -p "/data/data/.built-packages"
 		echo "$PACKAGE_VERSION" > "/data/data/.built-packages/$PACKAGE_NAME"
 
 		echo "finished building of '$PACKAGE_NAME'"
