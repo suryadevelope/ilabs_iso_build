@@ -605,8 +605,6 @@ while (($# > 0)); do
 		source "$PACKAGE_BUILDER_SCRIPT"
 
 		if [ "$CONFIG_BUILDER_SKIP_DEPCHECK" != "true" ]; then
-			echo "ls -l $BUILDER_SCRIPTDIR/scripts/buildorder.py"
-			echo "sudo chmod 755 $BUILDER_SCRIPTDIR/scripts/buildorder.py"
 			while read -r dep; do
 				echo "Building dependency $dep if necessary..."
 				"$BUILDER_SCRIPTDIR/build-package.sh" -a "$PACKAGE_TARGET_ARCH" -s "$dep"
