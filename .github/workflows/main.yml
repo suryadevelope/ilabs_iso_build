@@ -100,7 +100,7 @@ jobs:
           sudo apt install gettext
           wget https://download-fallback.gnome.org/sources/glib/2.48/glib-2.48.1.tar.xz
           tar xvf glib-2.48.1.tar.xz
-          ls
+          ls -l ./external/libvmc
           mv ./external/libvmc/gdbusmessage.c /glib-2.48.1/gio/gdbusmessage.c
           mv ./external/libvmc/gdbusauth.c /glib-2.48.1/gio/gdbusauth.c
           cd glib-2.48.1
