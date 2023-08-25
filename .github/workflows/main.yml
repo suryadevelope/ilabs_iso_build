@@ -107,7 +107,7 @@ jobs:
           ./configure
           sudo make -j
           sudo make install
-          wget https://sourceforge.net/projects/pcre/files/pcre/8.32/pcre-8.32.tar.gz/download
+          wget https://sourceforge.net/projects/pcre/files/pcre/8.32/pcre-8.32.tar.gz
           tar -zxvf pcre-8.32.tar.gz  
           cd pcre-8.32
           ./configure 
