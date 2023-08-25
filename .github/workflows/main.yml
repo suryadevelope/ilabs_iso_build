@@ -109,6 +109,8 @@ jobs:
   
           export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
           pkg-config --atleast-version=2.48 gthread-2.0; echo $?
+          chmod +x ./scripts/run-docker.sh
+          chmod +x ./build-package.sh
 
           # Ensure that built libVMC.so won't be mixed with prebuilt.
           find ./jniLibs -type f -delete
