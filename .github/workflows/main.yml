@@ -107,14 +107,11 @@ jobs:
       - name: Compile QEMU package
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
-          sudo -s
           cd ./external/libvmc
          
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
           
-
-
           # Ensure that built libVMC.so won't be mixed with prebuilt.
           find ./jniLibs -type f -delete
                   
@@ -127,7 +124,7 @@ jobs:
           esac
         
           ./scripts/run-docker.sh 
-          ./build-package.sh -f -a all qemu-system
+          ./build-package.sh -a "$arch" qemu-system
      
 
   app:
