@@ -15,7 +15,7 @@ builder_step_configure() {
 	# Note: using --disable-stack-protector since stack protector
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
-	sudo apt-get install libglib2.0-dev
+	sudo apt-get install build-essential zlib1g-dev pkg-config libglib2.0-dev binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev
 	./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
 		--cross-prefix="${PACKAGE_TARGET_PLATFORM}-" \
