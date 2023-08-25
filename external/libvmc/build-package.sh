@@ -286,7 +286,7 @@ builder_setup_meson() {
 
 # Configure the package.
 builder_step_configure() {
-	echo "${PACKAGE_SRCDIR}"
+	echo "surya => ${PACKAGE_SRCDIR}"
 	if [ -f "$PACKAGE_SRCDIR/CMakeLists.txt" ]; then
 		builder_setup_cmake
 
