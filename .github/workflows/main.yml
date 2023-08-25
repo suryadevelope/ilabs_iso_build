@@ -108,7 +108,7 @@ jobs:
           sudo apt-get install libsasl2-dev libsdl2-dev libseccomp-dev libsnappy-dev libssh-dev
           sudo apt-get install libvde-dev libvdeplug-dev libvte-2.91-dev libxen-dev liblzo2-dev
           sudo apt-get install valgrind xfslibs-dev 
-          sudo install git-core gcc-c++ make qemu glib2-devel libpixman-1-0-devel
+          sudo install git-core gcc-c++ make qemu glib2-devel
 
       - name: Compile QEMU package
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
