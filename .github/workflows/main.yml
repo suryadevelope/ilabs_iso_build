@@ -101,7 +101,7 @@ jobs:
           docker build -t libvmc-buildenv .
           sudo apt install -y libpixman-1-dev
           sudo apt-get install libglib2.0-dev
-          ./configure;make;make install
+          
          
          
       - name: Compile QEMU package
