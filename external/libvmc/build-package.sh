@@ -711,7 +711,8 @@ while (($# > 0)); do
 		# avoid picking up a cross-compiled pkg-config later on.
 
 		export PKG_CONFIG_LIBDIR="$PACKAGE_INSTALL_PREFIX/lib/pkgconfig"
-		mkdir -p "$PKG_CONFIG_LIBDIR"
+		adb shell "su -c 'mkdir -p $PKG_CONFIG_LIBDIR'"
+
 		ls -l $PKG_CONFIG
 		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG"
 		cat > "$PKG_CONFIG" <<-HERE
