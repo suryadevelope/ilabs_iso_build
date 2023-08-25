@@ -15,8 +15,8 @@ builder_step_configure() {
 	# Note: using --disable-stack-protector since stack protector
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
-	sudo apt-get install libperl-dev
-	sudo apt-get install libgtk2.0-dev
+	sudo apt install libperl-dev
+	sudo apt install libgtk2.0-dev
 	./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
 		--cross-prefix="${PACKAGE_TARGET_PLATFORM}-" \
