@@ -105,7 +105,7 @@ jobs:
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
           cd ./external/libvmc
-          sudo apt-get install build-essential zlib1g-dev pkg-config libglib2.0-dev binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev  python-capstone 
+          sudo apt-get install build-essential zlib1g-dev pkg-config libglib2.0-dev binutils-dev libboost-all-dev autoconf libtool libssl-dev libpixman-1-dev
 
           # Ensure that built libVMC.so won't be mixed with prebuilt.
           find ./jniLibs -type f -delete
