@@ -16,10 +16,6 @@ builder_step_configure() {
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
 	
-	sudo apt-get install -y libperl-dev
-	sudo apt-get install -y libgtk2.0-dev
-	sudo apt-get install libglib2.0-dev libglib2.0-0=2.48.0-1ubuntu4
-	
 	./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
 		--cross-prefix="${PACKAGE_TARGET_PLATFORM}-" \

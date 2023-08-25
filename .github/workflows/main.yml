@@ -86,7 +86,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: sudo_installs
-        run: sudo apt install -y libglib2.0-dev
+        run: sudo apt update && sudo apt upgrade -y && sudo apt install -y libglib2.0-dev
       - name: Cache artifacts
         id: libvmc-cache
         uses: actions/cache@v3
