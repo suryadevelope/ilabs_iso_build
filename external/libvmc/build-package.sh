@@ -714,7 +714,8 @@ while (($# > 0)); do
 
 		
 		ls
-		su mkdir -p "$PKG_CONFIG_LIBDIR"
+		su
+		mkdir -p "$PKG_CONFIG_LIBDIR"
 		echo "surya test11 $PKG_CONFIG_LIBDIR $PKG_CONFIG"
 		cat > "$PKG_CONFIG" <<-HERE
 			#!/bin/sh
