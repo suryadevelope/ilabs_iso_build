@@ -15,8 +15,7 @@ builder_step_configure() {
 	# Note: using --disable-stack-protector since stack protector
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
-	sudo apt-get install build-essential pkg-config libglib2.0-dev  libgtk2.0-dev
-	echo "surya build setup"
+	sudo apt install libglib2.0-dev libgcrypt20-dev zlib1g-dev autoconf automake libtool bison flex libpixman-1-dev libnfs-dev libiscsi-dev libaio-dev libbluetooth-dev libbrlapi-dev libbz2-dev libcap-dev libcap-ng-dev libcurl4-gnutls-dev libgtk-3-devecho "surya build setup"
 	./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
 		--cross-prefix="${PACKAGE_TARGET_PLATFORM}-" \
