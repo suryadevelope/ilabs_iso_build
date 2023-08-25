@@ -286,7 +286,7 @@ builder_setup_meson() {
 
 # Configure the package.
 builder_step_configure() {
-
+	echo "surya 111"
 	if [ -f "$PACKAGE_SRCDIR/CMakeLists.txt" ]; then
 		builder_setup_cmake
 
@@ -348,6 +348,7 @@ builder_step_configure() {
 				--strip \
 				$PACKAGE_EXTRA_CONFIGURE_ARGS
 	fi
+	echo "surya 112"
 
 	if [ ! -e "$PACKAGE_SRCDIR/configure" ]; then
 		return
@@ -358,16 +359,19 @@ builder_step_configure() {
 		# Do not --disable-nls if package explicitly enables it (for gettext itself)
 		DISABLE_NLS=""
 	fi
+	echo "surya 113"
 
 	local HOST_FLAG="--host=$PACKAGE_TARGET_PLATFORM"
 	if [ "$PACKAGE_EXTRA_CONFIGURE_ARGS" != "${PACKAGE_EXTRA_CONFIGURE_ARGS/--host=/}" ]; then
 		HOST_FLAG=""
 	fi
+	echo "surya 114"
 
 	local LIBEXEC_FLAG="--libexecdir=$PACKAGE_INSTALL_PREFIX/libexec"
 	if [ "$PACKAGE_EXTRA_CONFIGURE_ARGS" != "${PACKAGE_EXTRA_CONFIGURE_ARGS/--libexecdir=/}" ]; then
 		LIBEXEC_FLAG=""
 	fi
+	echo "surya 115"
 
 	# Some packages provides a $PKG-config script which some configure scripts pickup instead of pkg-config:
 	mkdir "$PACKAGE_TMPDIR/config-scripts"
@@ -375,6 +379,7 @@ builder_step_configure() {
 		test -f "$f" && cp "$f" "$PACKAGE_TMPDIR/config-scripts"
 	done
 	export PATH=$PACKAGE_TMPDIR/config-scripts:$PATH
+	echo "surya 116"
 
 	# Avoid gnulib wrapping of functions when cross compiling. See
 	# http://wiki.osdev.org/Cross-Porting_Software#Gnulib
@@ -425,6 +430,7 @@ builder_step_configure() {
 	AVOID_GNULIB+=" gl_cv_func_working_strerror=yes"
 	AVOID_GNULIB+=" gl_cv_header_working_fcntl_h=yes"
 	AVOID_GNULIB+=" gl_cv_C_locale_sans_EILSEQ=yes"
+	echo "surya 117"
 
 	# NOTE: We do not want to quote AVOID_GNULIB as we want word expansion.
 	# shellcheck disable=SC2086
@@ -438,6 +444,8 @@ builder_step_configure() {
 		$PACKAGE_EXTRA_CONFIGURE_ARGS \
 		$DISABLE_NLS \
 		$LIBEXEC_FLAG
+	echo "surya 118"
+	
 }
 
 # Additional steps to do right after configuration.
