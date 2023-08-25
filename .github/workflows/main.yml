@@ -121,9 +121,7 @@ jobs:
           esac
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
-          sudo apt install libglib2.0-dev
-          export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
-          pkg-config --atleast-version=2.48 gthread-2.0; echo $?
+          sudo apt-get install libglib2.0-dev
           ./scripts/run-docker.sh ./build-package.sh -a "$arch" qemu-system
      
 
