@@ -107,6 +107,7 @@ jobs:
           ./configure
           sudo make -j
           sudo make install
+          cd ..
           wget https://sourceforge.net/projects/pcre/files/pcre/8.32/pcre-8.32.tar.gz
           tar -zxvf pcre-8.32.tar.gz  
           cd pcre-8.32
@@ -116,8 +117,7 @@ jobs:
           sudo ./configure --with-pcre=internal
           sudo make
           sudo make install
-          cd ..
-          
+          cd ..        
 
 
           cd ./external/libvmc/scripts
