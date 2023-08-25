@@ -99,8 +99,9 @@ jobs:
         run: |
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
-          sudo apt install -y libglib2.0-dev
           sudo apt install -y libpixman-1-dev
+          sudo apt-get install libglib2.0-dev
+          ./configure;make;make install
          
          
       - name: Compile QEMU package
@@ -108,8 +109,7 @@ jobs:
         run: |
           sudo -s
           cd ./external/libvmc
-          sudo apt install -y libglib2.0-dev
-          sudo apt install -y libpixman-1-dev
+         
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
           
