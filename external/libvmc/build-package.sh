@@ -631,6 +631,7 @@ while (($# > 0)); do
 		mkdir -p "$PACKAGE_PACKAGEDIR" \
 			"$PACKAGE_TMPDIR" \
 			"$PACKAGE_CACHEDIR"
+		echo "surya test $PACKAGE_BUILDDIR $PACKAGE_PACKAGEDIR"
 
 		if [ -n "$PACKAGE_BUILD_IN_SRC" ]; then
 			ln -sfr "$PACKAGE_SRCDIR" "$PACKAGE_BUILDDIR"
