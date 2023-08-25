@@ -99,6 +99,7 @@ jobs:
         run: |
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
+          sudo apt install -y libglib2.0-dev
           sudo apt install -y libpixman-1-dev
          
          
@@ -106,6 +107,8 @@ jobs:
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
           cd ./external/libvmc
+          sudo apt install -y libglib2.0-dev
+          sudo apt install -y libpixman-1-dev
           chmod +x ./scripts/run-docker.sh
           chmod +x ./build-package.sh
 
