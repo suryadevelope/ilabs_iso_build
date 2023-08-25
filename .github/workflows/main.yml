@@ -104,7 +104,6 @@ jobs:
           ./configure
           make -j
           make install
-          sudo apt install gettext
           wget https://sourceforge.net/projects/pcre/files/pcre/8.32/pcre-8.32.tar.gz/download
           tar -zxvf pcre-8.32.tar.gz  
           cd pcre-8.32
