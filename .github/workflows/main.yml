@@ -117,7 +117,8 @@ jobs:
           sudo ./configure --with-pcre=internal
           sudo make
           sudo make install
-          cd ..        
+          cd ..    
+          sudo apt-get install glib2.0 -y
 
 
           cd ./external/libvmc/scripts
