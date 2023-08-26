@@ -97,30 +97,7 @@ jobs:
       - name: Setup build environment
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
-          sudo apt install gettext
-          wget https://download-fallback.gnome.org/sources/glib/2.48/glib-2.48.1.tar.xz
-          tar xvf glib-2.48.1.tar.xz
-          ls -l ./external/libvmc
-          mv -f ./external/libvmc/gdbusmessage.c ./glib-2.48.1/gio/gdbusmessage.c
-          mv -f ./external/libvmc/gdbusauth.c ./glib-2.48.1/gio/gdbusauth.c
-          cd glib-2.48.1
-          ./configure
-          sudo make -j
-          sudo make install
-          cd ..
-          wget https://sourceforge.net/projects/pcre/files/pcre/8.32/pcre-8.32.tar.gz
-          tar -zxvf pcre-8.32.tar.gz  
-          cd pcre-8.32
-          ./configure 
-          sudo make
-          sudo make install 
-          sudo ./configure --with-pcre=internal
-          sudo make
-          sudo make install
-          cd ..    
           apt-get --reinstall install libglib2.0
-
-
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
 
