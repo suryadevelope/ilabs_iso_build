@@ -97,7 +97,7 @@ jobs:
       - name: Setup build environment
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
-          apt-get --reinstall install libglib2.0
+          sudo apt-get --reinstall install libglib2.0
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
 
