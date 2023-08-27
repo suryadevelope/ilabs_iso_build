@@ -16,7 +16,7 @@ builder_step_configure() {
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
 	
-	./configure \
+	sudo ./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
 		--cross-prefix="${PACKAGE_TARGET_PLATFORM}-" \
 		--host-cc="gcc" \
