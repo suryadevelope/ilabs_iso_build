@@ -15,7 +15,7 @@ builder_step_configure() {
 	# Note: using --disable-stack-protector since stack protector
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
-	echo "$PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
+	echo "surya 1111 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
 	
 	sudo ./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
@@ -68,6 +68,9 @@ builder_step_configure() {
 		--disable-vhost-user-blk-server \
 		--disable-tools \
 		--target-list=x86_64-softmmu
+
+	echo "surya 1112 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
+	
 }
 
 builder_step_post_make_install() {
