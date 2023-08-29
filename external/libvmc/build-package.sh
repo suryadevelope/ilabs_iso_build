@@ -552,6 +552,7 @@ while (($# > 0)); do
 		PACKAGE_NAME=$(basename "$1")
 		PACKAGE_BUILDER_DIR="$BUILDER_SCRIPTDIR/packages/$PACKAGE_NAME"
 		PACKAGE_BUILDER_SCRIPT="$PACKAGE_BUILDER_DIR/build.sh"
+		chmod +x "$PACKAGE_BUILDER_SCRIPT"
 
 		if [ ! -f "$PACKAGE_BUILDER_SCRIPT" ]; then
 			error_exit "No build.sh script at package dir $PACKAGE_BUILDER_DIR!"
