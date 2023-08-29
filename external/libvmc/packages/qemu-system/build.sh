@@ -18,7 +18,6 @@ builder_step_configure() {
 	
 	echo "surya 1111 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
 	chmod +x "${PACKAGE_INSTALL_PREFIX}"
-	chmod +x "${PACKAGE_TARGET_PLATFORM}"
 	ls
 	
 	sudo ./configure \
