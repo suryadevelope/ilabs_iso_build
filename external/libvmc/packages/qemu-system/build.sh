@@ -17,7 +17,7 @@ builder_step_configure() {
 	# override them with what QEMU configure provides.
 	echo "surya 1111 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
 	ls
-	chmod +x ./configure.sh
+	# chmod +x ./configure.sh
 	
 	sudo ./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
