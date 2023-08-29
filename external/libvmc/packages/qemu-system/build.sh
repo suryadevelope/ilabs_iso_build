@@ -15,8 +15,8 @@ builder_step_configure() {
 	# Note: using --disable-stack-protector since stack protector
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
-	echo "surya 1111 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
 	which "${PACKAGE_INSTALL_PREFIX}"
+	echo "surya 1111 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
 	chmod +x "${PACKAGE_INSTALL_PREFIX}"
 	chmod +x "${PACKAGE_TARGET_PLATFORM}"
 	ls
