@@ -114,6 +114,31 @@ jobs:
           sudo apt search libgtk+ libglib
           sudo apt install libgtk2.0-dev libglib2.0-dev
           sudo apt-get --reinstall install libglib2.0
+          git clone https://github.com/glennrp/libpng -b v1.6.37
+          cd libpng
+          # Only choose one of these, depending on your build machine...
+          export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
+          export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+          # Only choose one of these, depending on your device...
+          export TARGET=aarch64-linux-android
+          export TARGET=armv7a-linux-androideabi
+          export TARGET=i686-linux-android
+          export TARGET=x86_64-linux-android
+          # Set this to your minSdkVersion.
+          export API=21
+          # Configure and build.
+          export AR=$TOOLCHAIN/bin/llvm-ar
+          export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+          export AS=$CC
+          export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+          export LD=$TOOLCHAIN/bin/ld
+          export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+          export STRIP=$TOOLCHAIN/bin/llvm-strip
+          ./configure --host $TARGET
+          make
+
+          cd ..
+
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
 
