@@ -19,6 +19,7 @@ builder_step_configure() {
 	echo "surya 1111 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
 	chmod +x "${PACKAGE_INSTALL_PREFIX}"
 	ls
+	ls /usr/arm-linux-androideabi/bin/
 	
 	sudo ./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
