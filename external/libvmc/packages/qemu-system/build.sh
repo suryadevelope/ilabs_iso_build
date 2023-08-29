@@ -16,8 +16,9 @@ builder_step_configure() {
 	# flags already passed by build scripts but we do not want to
 	# override them with what QEMU configure provides.
 	echo "surya 1111 $PACKAGE_INSTALL_PREFIX ${PACKAGE_TARGET_PLATFORM}"
+	chmod +x "${PACKAGE_INSTALL_PREFIX}"
+	chmod +x "${PACKAGE_TARGET_PLATFORM}"
 	ls
-	# chmod +x ./configure.sh
 	
 	sudo ./configure \
 		--prefix="$PACKAGE_INSTALL_PREFIX" \
