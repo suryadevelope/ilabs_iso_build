@@ -117,25 +117,25 @@ jobs:
           git clone https://github.com/glennrp/libpng -b v1.6.37
           cd libpng
           # Only choose one of these, depending on your build machine...
-          export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
-          export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+          sudo export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
+          sudo export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
           # Only choose one of these, depending on your device...
-          export TARGET=aarch64-linux-android
-          export TARGET=armv7a-linux-androideabi
-          export TARGET=i686-linux-android
-          export TARGET=x86_64-linux-android
+          sudo export TARGET=aarch64-linux-android
+          sudo export TARGET=armv7a-linux-androideabi
+          sudo export TARGET=i686-linux-android
+          sudo export TARGET=x86_64-linux-android
           # Set this to your minSdkVersion.
-          export API=21
+          sudo export API=21
           # Configure and build.
-          export AR=$TOOLCHAIN/bin/llvm-ar
-          export CC=$TOOLCHAIN/bin/$TARGET$API-clang
-          export AS=$CC
-          export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
-          export LD=$TOOLCHAIN/bin/ld
-          export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
-          export STRIP=$TOOLCHAIN/bin/llvm-strip
-          ./configure --host $TARGET
-          make
+          sudo export AR=$TOOLCHAIN/bin/llvm-ar
+          sudo export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+          sudo export AS=$CC
+          sudo export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+          sudo export LD=$TOOLCHAIN/bin/ld
+          sudo export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+          sudo export STRIP=$TOOLCHAIN/bin/llvm-strip
+          sudo ./configure --host $TARGET
+          sudo make
 
           cd ..
 
