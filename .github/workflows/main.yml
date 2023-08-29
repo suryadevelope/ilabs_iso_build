@@ -29,6 +29,17 @@ jobs:
 
       - name: Validation
         uses: gradle/wrapper-validation-action@v1
+        
+  terminal-tests:
+    name: Run unit tests for terminal emulator
+    needs: gradle-wrapper-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Testing terminal emulator library
+        run: ./gradlew test
 
      
 
