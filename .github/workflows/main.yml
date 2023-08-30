@@ -107,13 +107,13 @@ jobs:
       - name: Setup build environment
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
+          sudo apt-get install libxml2 libxml2-dev
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
 
       - name: Compile QEMU package
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
-          sudo apt-get install libxml2 libxml2-dev
           cd ./external/libvmc
          
           chmod +x ./scripts/run-docker.sh
