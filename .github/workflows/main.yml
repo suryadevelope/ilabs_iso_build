@@ -97,9 +97,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: sudo_installs
-        run: sudo apt install -y libglib2.0-dev
       - name: Cache artifacts
         id: libvmc-cache
         uses: actions/cache@v3
@@ -110,49 +107,13 @@ jobs:
       - name: Setup build environment
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
-    
-          sudo apt search libgtk+ libglib
-          sudo apt install libgtk2.0-dev libglib2.0-dev
-          sudo apt-get --reinstall install libglib2.0
-          git clone https://github.com/glennrp/libpng -b v1.6.37
-          cd libpng
-          # Only choose one of these, depending on your build machine...
-          sudo export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
-          sudo export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
-          # Only choose one of these, depending on your device...
-          sudo export TARGET=aarch64-linux-android
-          sudo export TARGET=armv7a-linux-androideabi
-          sudo export TARGET=i686-linux-android
-          sudo export TARGET=x86_64-linux-android
-          # Set this to your minSdkVersion.
-          sudo export API=21
-          # Configure and build.
-          sudo export AR=$TOOLCHAIN/bin/llvm-ar
-          sudo export CC=$TOOLCHAIN/bin/$TARGET$API-clang
-          sudo export AS=$CC
-          sudo export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
-          sudo export LD=$TOOLCHAIN/bin/ld
-          sudo export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
-          sudo export STRIP=$TOOLCHAIN/bin/llvm-strip
-          sudo ./configure --host $TARGET
-          sudo make
-
-          cd ..
-
           cd ./external/libvmc/scripts
           docker build -t libvmc-buildenv .
 
-
-          
-         
-         
       - name: Compile QEMU package
         if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
         run: |
-          sudo apt-get update
-          sudo apt-get install libglib2.0
-          sudo apt-get install glib-2.0
-          sudo apt-get install libglib2.0-dev
+        
           cd ./external/libvmc
          
           chmod +x ./scripts/run-docker.sh
