@@ -341,7 +341,6 @@ profile_base() {
 	rm master.zip
 	cd basic-express-app-master && ls
 	cd ..
-	cd ..
 	echo "surya333"
 
 }
