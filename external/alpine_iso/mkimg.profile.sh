@@ -336,8 +336,17 @@ profile_base() {
 	pwd
 	ls
 
-	sudo apt install npm
+	export PATH="$PATH:/root/local/bin"
+	mkdir local
+	mkdir node-latest-install
+	cd node-latest-install
+	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
+	cd node-latest
+	ls
 	echo "surya3333" 
+	sudo apt-get install npm 
+	cd .. 
+	ls
 	npm --v
 
 	mkdir surya && cd surya
