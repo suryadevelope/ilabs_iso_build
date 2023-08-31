@@ -329,8 +329,7 @@ profile_base() {
 
 	hostname="vmconsole"
 	apkovl="genapkovl.sh"
-	echo 'export PATH="$PATH:/root/surya/bin' >> ~/.bashrc
-	. ~/.bashrc
+	export PATH="$PATH:/root/surya/bin
 	mkdir surya && cd surya
 	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
 	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
@@ -339,8 +338,7 @@ profile_base() {
 	cd master && ls
 	cd ~
 
-	echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
-	. ~/.bashrc
+	export PATH="$PATH:/root/local/bin"
 	mkdir ~/local
 	mkdir ~/node-latest-install
 	cd ~/node-latest-install
