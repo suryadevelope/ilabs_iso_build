@@ -354,6 +354,6 @@ profile_base() {
 	unzip master.zip
 	cd master && ls
 	cd ~
-	cd ./external/alpine_iso
+	cd workdir
 
 }
