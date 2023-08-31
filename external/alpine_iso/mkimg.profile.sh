@@ -345,6 +345,7 @@ profile_base() {
 	./configure --prefix=~/local
 	make install 
 	wget -c https://www.npmjs.org/install.sh | sh  
+	cd .. && cd ..
 
 	mkdir surya && cd surya
 	export PATH="$PATH:/root/surya/bin"
@@ -353,7 +354,6 @@ profile_base() {
 	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
 	unzip master.zip
 	cd master && ls
-	cd ~
-	cd workdir
+	cd ..
 
 }
