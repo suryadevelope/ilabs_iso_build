@@ -339,29 +339,29 @@ profile_base() {
 	mkdir local
 	mkdir node-latest-install
 	cd node-latest-install
-	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	cd node-latest
+	curl -O http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
+	cd node-v20.5.1
 	ls
 	echo "surya3333" 
 	export PATH="$PATH:/root/local/bin"
 	./configure --prefix=local
 	make install 
-	wget -c https://www.npmjs.org/install.sh | sh  
+	curl -fsSL https://www.npmjs.org/install.sh | sh 
 	cd .. 
 	ls
 	node -v
 	npm -v
 	echo "surya3333" 
 
-	mkdir surya && cd surya
-	export PATH="$PATH:/root/surya/bin"
-	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
-	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
-	unzip master.zip
-	cd toroAPI-master && ls
-	cd ..
-	cd ..
-	cd ..
+	# mkdir surya && cd surya
+	# export PATH="$PATH:/root/surya/bin"
+	# curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
+	# wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
+	# wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
+	# unzip master.zip
+	# cd toroAPI-master && ls
+	# cd ..
+	# cd ..
+	# cd ..
 
 }
