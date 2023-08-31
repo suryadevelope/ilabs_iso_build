@@ -343,13 +343,13 @@ profile_base() {
 	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
 	cd node-latest
 	ls
-	sudo apt-get install npm 
+	sudo apt install npm 
 	cd .. 
 	ls
 	npm --v
 	echo "surya3333" 
 	curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-	sudo apt-get install nodejs
+	sudo apt install nodejs
 	node -v
 	npm -v
 	echo "surya3333" 
