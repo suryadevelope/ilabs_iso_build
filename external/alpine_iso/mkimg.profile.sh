@@ -347,14 +347,15 @@ profile_base() {
 	wget -c https://www.npmjs.org/install.sh | sh  
 	cd .. 
 	ls
+	npm --v
 
-	# mkdir surya && cd surya
-	# export PATH="$PATH:/root/surya/bin"
-	# curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
-	# wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	# wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
-	# unzip master.zip
-	# cd master && ls
-	# cd ..
+	mkdir surya && cd surya
+	export PATH="$PATH:/root/surya/bin"
+	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
+	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
+	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
+	unzip master.zip
+	cd master && ls
+	cd ..
 
 }
