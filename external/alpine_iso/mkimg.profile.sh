@@ -329,24 +329,7 @@ profile_base() {
 
 	hostname="vmconsole"
 	apkovl="genapkovl.sh"
-	export PATH="$PATH:/root/surya/bin"
-	mkdir surya && cd surya
-	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
-	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
-	unzip master.zip
-	cd master && ls
-	cd ~
-
-	export PATH="$PATH:/root/local/bin"
-	mkdir ~/local
-	mkdir ~/node-latest-install
-	cd ~/node-latest-install
-	wget -c http://nodejs.org/dist/node-latest.tar.gz | tar -xvf node-latest.tar.gz
-	cd node-latest
-	./configure --prefix=~/local
-	make install 
-	wget -c https://www.npmjs.org/install.sh | sh  
+	
 
 	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
 
