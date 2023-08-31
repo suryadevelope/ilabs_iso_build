@@ -342,16 +342,16 @@ profile_base() {
 	curl -O http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
 	cd node-v20.5.1
 	ls
-	echo "surya3333" 
 	export PATH="$PATH:/root/local/bin"
 	./configure --prefix=local
 	make install 
-	curl -fsSL https://www.npmjs.org/install.sh | sh 
-	cd .. 
-	ls
-	node -v
-	npm -v
 	echo "surya3333" 
+	# curl -fsSL https://www.npmjs.org/install.sh | sh 
+	# cd .. 
+	# ls
+	# node -v
+	# npm -v
+	# echo "surya3333" 
 
 	# mkdir surya && cd surya
 	# export PATH="$PATH:/root/surya/bin"
