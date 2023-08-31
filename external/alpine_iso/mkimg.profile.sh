@@ -335,16 +335,15 @@ profile_base() {
 	echo "started custom installation with all libs suryaprakash"
 	pwd
 	ls
-
+	sudo -s
 	mkdir local
 	mkdir node-latest-install
 	cd node-latest-install
-	curl -O http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
+	curl -O http://nodejs.org/dist/node-v20.5.1.tar.gz && tar -xvf node-v20.5.1.tar.gz
 	cd node-v20.5.1
-	ls
-	export PATH="$PATH:/root/local/bin"
 	./configure --prefix=local
 	make install 
+	export PATH="$PATH:/root/node-latest-install/node-v20.5.1/bin"
 	echo "surya3333" 
 	# curl -fsSL https://www.npmjs.org/install.sh | sh 
 	# cd .. 
