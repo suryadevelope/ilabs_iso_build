@@ -59,3 +59,5 @@ wget-doc
 wireless-tools-doc
 wpa_supplicant-doc
 zlib-doc
+nodejs
+npm

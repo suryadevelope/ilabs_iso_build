@@ -332,20 +332,8 @@ profile_base() {
 	
 	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
 
-	echo "started custom installation with all libs suryaprakash"
-	pwd
-	ls
-	sudo -s
-	mkdir local
-	mkdir node-latest-install
-	cd node-latest-install
-	curl -O http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	cd node-v20.5.1
-	./configure --prefix=local
-	make install 
-	export PATH="$PATH:/root/node-latest-install/node-v20.5.1/bin"
-	curl -fsSL https://www.npmjs.org/install.sh | sh 
-	echo "surya3333" 
+	node -v
+	npm -v
 	# cd .. 
 	# ls
 	# node -v
