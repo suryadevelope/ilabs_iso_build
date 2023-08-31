@@ -336,16 +336,19 @@ profile_base() {
 	pwd
 	ls
 
-	# export PATH="$PATH:/root/local/bin"
-	# mkdir ~/local
-	# mkdir ~/node-latest-install
-	# cd ~/node-latest-install
-	# wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	# cd node-latest
-	# ./configure --prefix=~/local
-	# make install 
-	# wget -c https://www.npmjs.org/install.sh | sh  
-	# cd .. && cd ..
+	export PATH="$PATH:/root/local/bin"
+	mkdir ~/local
+	mkdir ~/node-latest-install
+	cd ~/node-latest-install
+	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
+	cd node-latest
+	./configure --prefix=~/local
+	make install 
+	wget -c https://www.npmjs.org/install.sh | sh  
+	ls
+	cd .. 
+	cd ..
+	ls
 
 	# mkdir surya && cd surya
 	# export PATH="$PATH:/root/surya/bin"
