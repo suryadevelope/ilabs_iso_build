@@ -336,7 +336,6 @@ profile_base() {
 	pwd
 	ls
 
-	export PATH="$PATH:/root/local/bin"
 	mkdir local
 	mkdir node-latest-install
 	cd node-latest-install
@@ -344,11 +343,13 @@ profile_base() {
 	cd node-latest
 	ls
 	echo "surya3333" 
+	export PATH="$PATH:/root/local/bin"
 	./configure --prefix=local
 	make install 
 	wget -c https://www.npmjs.org/install.sh | sh  
 	cd .. 
 	ls
+	node -v
 	npm -v
 	echo "surya3333" 
 
