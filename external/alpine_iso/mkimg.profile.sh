@@ -352,7 +352,7 @@ profile_base() {
 	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
 	unzip master.zip
 	cd master && ls
-	cd .. 
-	cd ..
+	cd ~
+	cd ./external/alpine_iso
 
 }
