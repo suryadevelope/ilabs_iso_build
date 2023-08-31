@@ -346,7 +346,6 @@ profile_base() {
 	make install 
 	wget -c https://www.npmjs.org/install.sh | sh  
 	cd .. 
-	cd ..
 	ls
 
 	# mkdir surya && cd surya
