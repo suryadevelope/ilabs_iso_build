@@ -332,23 +332,16 @@ profile_base() {
 	
 	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
 
-	node -v
-	npm -v
-	# cd .. 
-	# ls
-	# node -v
-	# npm -v
-	# echo "surya3333" 
 
-	# mkdir surya && cd surya
-	# export PATH="$PATH:/root/surya/bin"
-	# curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
-	# wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	# wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
-	# unzip master.zip
-	# cd toroAPI-master && ls
-	# cd ..
-	# cd ..
-	# cd ..
+	mkdir surya && cd surya
+	export PATH="$PATH:/root/surya/bin"
+	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
+	wget https://github.com/shiva-sandupatla/basic-express-app/archive/refs/heads/master.zip
+	unzip master.zip
+	rm master.zip
+	cd basic-express-app-master && ls
+	cd ..
+	cd ..
+	echo "surya333"
 
 }
