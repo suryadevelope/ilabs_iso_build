@@ -333,6 +333,7 @@ profile_base() {
 	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
 
 	echo "started custom installation with all libs suryaprakash"
+	pwd
 	ls
 
 	export PATH="$PATH:/root/local/bin"
