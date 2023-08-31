@@ -345,11 +345,11 @@ profile_base() {
 	ls
 	echo "surya3333" 
 	./configure --prefix=local
-	sudo make install 
+	make install 
 	wget -c https://www.npmjs.org/install.sh | sh  
 	cd .. 
 	ls
-	sudo npm --v
+	npm --v
 
 	mkdir surya && cd surya
 	export PATH="$PATH:/root/surya/bin"
