@@ -38,19 +38,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.12' # install the python version needed
+
       - name: Testing terminal emulator library
         run: |
           chmod +x gradlew
           ./gradlew test
-
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10' # install the python version needed
-      - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
 
 
   alpine-iso:
@@ -59,6 +55,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.12' # install the python version needed
 
       - name: Setup Abuild key
         run: |
@@ -229,7 +230,7 @@ jobs:
       - name: Get build id
         id: build-id
         run: echo "::set-output name=git_rev::$(git rev-parse --short HEAD)"
-
+        
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
