@@ -330,15 +330,10 @@ profile_base() {
 	hostname="vmconsole"
 	apkovl="genapkovl.sh"
 	
-	mkdir surya && cd surya
-	export PATH="$PATH:/root/surya/bin"
-	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
-	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
-	unzip master.zip
-	cd master && ls
-	cd .. 
-	cd ..
+	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
+
+	echo "started custom installation with all libs suryaprakash"
+	ls
 
 	export PATH="$PATH:/root/local/bin"
 	mkdir ~/local
@@ -349,7 +344,15 @@ profile_base() {
 	./configure --prefix=~/local
 	make install 
 	wget -c https://www.npmjs.org/install.sh | sh  
-	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
 
+	mkdir surya && cd surya
+	export PATH="$PATH:/root/surya/bin"
+	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
+	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
+	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
+	unzip master.zip
+	cd master && ls
+	cd .. 
+	cd ..
 
 }
