@@ -357,5 +357,6 @@ profile_base() {
 	unzip master.zip
 	cd master && ls
 	cd ..
+	cd ..
 
 }
