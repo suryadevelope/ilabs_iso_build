@@ -340,12 +340,12 @@ profile_base() {
 	mkdir node-latest-install
 	cd node-latest-install
 	curl -O http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
-	cd node-20.5.1
+	cd node-v20.5.1
 	./configure --prefix=local
 	make install 
 	export PATH="$PATH:/root/node-latest-install/node-v20.5.1/bin"
+	curl -fsSL https://www.npmjs.org/install.sh | sh 
 	echo "surya3333" 
-	# curl -fsSL https://www.npmjs.org/install.sh | sh 
 	# cd .. 
 	# ls
 	# node -v
