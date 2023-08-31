@@ -342,6 +342,8 @@ profile_base() {
 	cd node-latest-install
 	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
 	cd node-latest
+	ls
+	echo "surya3333" 
 	./configure --prefix=local
 	make install 
 	wget -c https://www.npmjs.org/install.sh | sh  
@@ -355,7 +357,7 @@ profile_base() {
 	wget -c http://nodejs.org/dist/node-latest.tar.gz && tar -xvf node-latest.tar.gz
 	wget https://github.com/suryadevelope/toroAPI/archive/refs/heads/master.zip
 	unzip master.zip
-	cd master && ls
+	cd toroAPI-master && ls
 	cd ..
 	cd ..
 
