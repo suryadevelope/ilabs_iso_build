@@ -253,8 +253,8 @@ makefile root:root 0644 "$tmp"/etc/hosts <<EOF
 # IPv4.
 127.0.0.1   localhost.localdomain localhost
 127.0.1.1   vmconsole
-10.0.2.2    qemu-host
-10.0.2.3    qemu-dns
+192.168.23.2    qemu-host
+192.168.23.3    qemu-dns
 
 # IPv6.
 ::1         ip6-localhost ip6-loopback
@@ -273,11 +273,13 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet dhcp
+auto wlan0
+iface wlan0 inet dhcp
 
 EOF
 makefile root:root 0644 "$tmp"/etc/resolv.conf <<EOF
 nameserver 8.8.8.8
-nameserver 10.0.2.3
+nameserver 192.168.23.68
 EOF
 
 ##############################################################################
