@@ -266,17 +266,15 @@ ff02::3     ip6-allhosts
 EOF
 
 ## Network interface configuration
-# mkdir -p "$tmp"/etc/network
-# makefile root:root 0644 "$tmp"/etc/network/interfaces <<EOF
-# auto lo
-# iface lo inet loopback
+mkdir -p "$tmp"/etc/network
+makefile root:root 0644 "$tmp"/etc/network/interfaces <<EOF
+auto lo
+iface lo inet loopback
 
-# auto eth0
-# iface eth0 inet static
-#     address 10.0.2.15
-#     netmask 255.255.255.0
-#     gateway 10.0.2.2
-# EOF
+auto eth0
+iface eth0 inet dhcp
+
+EOF
 makefile root:root 0644 "$tmp"/etc/resolv.conf <<EOF
 nameserver 8.8.8.8
 nameserver 10.0.2.3
