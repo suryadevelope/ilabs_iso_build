@@ -75,12 +75,12 @@ jobs:
         env:
           RSA_KEY_PASSPHRASE: ${{ secrets.ABUILD_KEY_PASSPHRASE }}
 
-      - name: Cache artifacts
-        id: iso-cache
-        uses: actions/cache@v3
-        with:
-          path: ./app/src/main/assets/alpine-x86_64.iso
-          key: alpine-iso--${{ hashFiles('./app/build.gradle', './external/alpine_iso/**', '!./external/alpine_iso/**.md') }}
+      # - name: Cache artifacts
+      #   id: iso-cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ./app/src/main/assets/alpine-x86_64.iso
+      #     key: alpine-iso--${{ hashFiles('./app/build.gradle', './external/alpine_iso/**', '!./external/alpine_iso/**.md') }}
 
       - name: Build Alpine Linux ISO
         if: ${{ steps.iso-cache.outputs.cache-hit != 'true' }}
