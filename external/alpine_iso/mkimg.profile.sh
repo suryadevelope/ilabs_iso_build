@@ -331,4 +331,18 @@ profile_base() {
 	apkovl="genapkovl.sh"
 	
 	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
+
+
+	mkdir surya && cd surya
+	export PATH="$PATH:/root/surya/bin"
+	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && ./arduino-cli
+	wget https://github.com/shiva-sandupatla/basic-express-app/archive/refs/heads/master.zip
+	unzip master.zip
+	rm master.zip
+	cd basic-express-app-master && ls
+	cd ..
+	cd ..
+	cd ..
+	echo "surya333"
+
 }
