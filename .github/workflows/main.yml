@@ -96,151 +96,151 @@ jobs:
           name: alpine-x86_64.iso
           path: ./app/src/main/assets/alpine-x86_64.iso
 
-  libvmc:
-    name: Build libVMC.so
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        abi: [arm64-v8a, armeabi-v7a, x86, x86_64]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Cache artifacts
-        id: libvmc-cache
-        uses: actions/cache@v3
-        with:
-          path: ./external/libvmc/jniLibs/${{ matrix.abi }}/libVMC.so
-          key: libvmc--${{ matrix.abi }}--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
+  # libvmc:
+  #   name: Build libVMC.so
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       abi: [arm64-v8a, armeabi-v7a, x86, x86_64]
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Cache artifacts
+  #       id: libvmc-cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ./external/libvmc/jniLibs/${{ matrix.abi }}/libVMC.so
+  #         key: libvmc--${{ matrix.abi }}--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
 
-      - name: Setup build environment
-        if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
-        run: |
-          sudo apt-get install libxml2 libxml2-dev
-          cd ./external/libvmc/scripts
-          docker build -t libvmc-buildenv .
+  #     - name: Setup build environment
+  #       if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
+  #       run: |
+  #         sudo apt-get install libxml2 libxml2-dev
+  #         cd ./external/libvmc/scripts
+  #         docker build -t libvmc-buildenv .
 
-      - name: Compile QEMU package
-        if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
-        run: |
-          cd ./external/libvmc
+  #     - name: Compile QEMU package
+  #       if: ${{ steps.libvmc-cache.outputs.cache-hit != 'true' }}
+  #       run: |
+  #         cd ./external/libvmc
          
-          chmod +x ./scripts/run-docker.sh
-          chmod +x ./build-package.sh
+  #         chmod +x ./scripts/run-docker.sh
+  #         chmod +x ./build-package.sh
           
-          # Ensure that built libVMC.so won't be mixed with prebuilt.
-          find ./jniLibs -type f -delete
+  #         # Ensure that built libVMC.so won't be mixed with prebuilt.
+  #         find ./jniLibs -type f -delete
                   
-          case "${{ matrix.abi }}" in
-            arm64-v8a) arch=aarch64;;
-            armeabi-v7a) arch=arm;;
-            x86) arch=i686;;
-            x86_64) arch=x86_64;;
-            *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
-          esac
+  #         case "${{ matrix.abi }}" in
+  #           arm64-v8a) arch=aarch64;;
+  #           armeabi-v7a) arch=arm;;
+  #           x86) arch=i686;;
+  #           x86_64) arch=x86_64;;
+  #           *) echo "Unknown ABI: ${{ matrix.abi }}"; exit 1;;
+  #         esac
         
-          ./scripts/run-docker.sh ./build-package.sh -a all qemu-system
+  #         ./scripts/run-docker.sh ./build-package.sh -a all qemu-system
      
 
-  app:
-    name: Build application
-    needs: [alpine-iso, libvmc]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  # app:
+  #   name: Build application
+  #   needs: [alpine-iso, libvmc]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Get build id
-        id: build-id
-        run: echo "::set-output name=git_rev::$(git rev-parse --short HEAD)"
+  #     - name: Get build id
+  #       id: build-id
+  #       run: echo "::set-output name=git_rev::$(git rev-parse --short HEAD)"
 
-      - name: Get cached system image
-        uses: actions/cache@v3
-        with:
-          path: ./app/src/main/assets/alpine-x86_64.iso
-          key: alpine-iso--${{ hashFiles('./app/build.gradle', './external/alpine_iso/**', '!./external/alpine_iso/**.md') }}
+  #     - name: Get cached system image
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ./app/src/main/assets/alpine-x86_64.iso
+  #         key: alpine-iso--${{ hashFiles('./app/build.gradle', './external/alpine_iso/**', '!./external/alpine_iso/**.md') }}
 
-      - name: Get cached libVMC.so (arm64-v8a)
-        uses: actions/cache@v3
-        with:
-          path: ./external/libvmc/jniLibs/arm64-v8a/libVMC.so
-          key: libvmc--arm64-v8a--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
+  #     - name: Get cached libVMC.so (arm64-v8a)
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ./external/libvmc/jniLibs/arm64-v8a/libVMC.so
+  #         key: libvmc--arm64-v8a--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
 
-      - name: Get cached libVMC.so (armeabi-v7a)
-        uses: actions/cache@v3
-        with:
-          path: ./external/libvmc/jniLibs/armeabi-v7a/libVMC.so
-          key: libvmc--armeabi-v7a--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
+  #     - name: Get cached libVMC.so (armeabi-v7a)
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ./external/libvmc/jniLibs/armeabi-v7a/libVMC.so
+  #         key: libvmc--armeabi-v7a--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
 
-      - name: Get cached libVMC.so (x86)
-        uses: actions/cache@v3
-        with:
-          path: ./external/libvmc/jniLibs/x86/libVMC.so
-          key: libvmc--x86--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
+  #     - name: Get cached libVMC.so (x86)
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ./external/libvmc/jniLibs/x86/libVMC.so
+  #         key: libvmc--x86--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
 
-      - name: Get cached libVMC.so (x86_64)
-        uses: actions/cache@v3
-        with:
-          path: ./external/libvmc/jniLibs/x86_64/libVMC.so
-          key: libvmc--x86_64--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
+  #     - name: Get cached libVMC.so (x86_64)
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ./external/libvmc/jniLibs/x86_64/libVMC.so
+  #         key: libvmc--x86_64--${{ hashFiles('./app/build.gradle', './external/libvmc/**', '!./external/libvmc/**.md') }}
 
-      - name: Create APK
-        run: |
-          # Detect missing ISO file.
-          [ ! -f ./app/src/main/assets/alpine-x86_64.iso ] && exit 1
+  #     - name: Create APK
+  #       run: |
+  #         # Detect missing ISO file.
+  #         [ ! -f ./app/src/main/assets/alpine-x86_64.iso ] && exit 1
 
-          # Detect missing JNI libraries.
-          for abi in arm64-v8a armeabi-v7a x86 x86_64; do
-            [ ! -f "./external/libvmc/jniLibs/${abi}/libVMC.so" ] && exit 1
-          done
+  #         # Detect missing JNI libraries.
+  #         for abi in arm64-v8a armeabi-v7a x86 x86_64; do
+  #           [ ! -f "./external/libvmc/jniLibs/${abi}/libVMC.so" ] && exit 1
+  #         done
 
-          mkdir -p ./artifacts
+  #         mkdir -p ./artifacts
 
-          if [ "${{ startsWith(github.ref, 'refs/tags/') }}" = "true" ]; then
-            ./gradlew assembleRelease
-            mkdir -p ./artifacts/apk
-            mv ./app/build/outputs/apk/release/* ./artifacts/apk/
-            ./gradlew bundleRelease
-            mkdir -p ./artifacts/bundle
-            mv ./app/build/outputs/bundle/release/* ./artifacts/bundle/
-          else
-            unset KEY_PASSPHRASE
-            ./gradlew assembleDebug
-            mkdir -p ./artifacts/apk
-            mv ./app/build/outputs/apk/debug/* ./artifacts/apk/
-          mv ./artifacts ./app/src/main/assets/alpine-x86_64.iso
-          fi
-        env:
-          KEY_PASSPHRASE: "${{ secrets.ANDROID_KEY_PASSPHRASE }}"
+  #         if [ "${{ startsWith(github.ref, 'refs/tags/') }}" = "true" ]; then
+  #           ./gradlew assembleRelease
+  #           mkdir -p ./artifacts/apk
+  #           mv ./app/build/outputs/apk/release/* ./artifacts/apk/
+  #           ./gradlew bundleRelease
+  #           mkdir -p ./artifacts/bundle
+  #           mv ./app/build/outputs/bundle/release/* ./artifacts/bundle/
+  #         else
+  #           unset KEY_PASSPHRASE
+  #           ./gradlew assembleDebug
+  #           mkdir -p ./artifacts/apk
+  #           mv ./app/build/outputs/apk/debug/* ./artifacts/apk/
+  #         mv ./artifacts ./app/src/main/assets/alpine-x86_64.iso
+  #         fi
+  #       env:
+  #         KEY_PASSPHRASE: "${{ secrets.ANDROID_KEY_PASSPHRASE }}"
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: vmConsole-git-${{ steps.build-id.outputs.git_rev }}
-          path: ./artifacts/
+  #     - name: Upload artifacts
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: vmConsole-git-${{ steps.build-id.outputs.git_rev }}
+  #         path: ./artifacts/
 
-  publish:
-    name: Publish release
-    needs: [app]
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  # publish:
+  #   name: Publish release
+  #   needs: [app]
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Get build id
-        id: build-id
-        run: echo "::set-output name=git_rev::$(git rev-parse --short HEAD)"
+  #     - name: Get build id
+  #       id: build-id
+  #       run: echo "::set-output name=git_rev::$(git rev-parse --short HEAD)"
         
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: vmConsole-git-${{ steps.build-id.outputs.git_rev }}
-          path: ./artifacts/
+  #     - name: Download artifacts
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: vmConsole-git-${{ steps.build-id.outputs.git_rev }}
+  #         path: ./artifacts/
 
-      - name: Publish release
-        if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
-        run: |
-          TAG="${GITHUB_REF##*/}"
-          hub release create -m "${TAG}" -a ./artifacts/apk/vmConsole-*-release.apk "${TAG}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Publish release
+  #       if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+  #       run: |
+  #         TAG="${GITHUB_REF##*/}"
+  #         hub release create -m "${TAG}" -a ./artifacts/apk/vmConsole-*-release.apk "${TAG}"
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

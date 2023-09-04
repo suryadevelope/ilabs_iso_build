@@ -31,6 +31,7 @@ nano-syntax
 network-extras
 openntpd
 openntpd-doc
+openrc
 openrc-doc
 openssh
 openssh-client
