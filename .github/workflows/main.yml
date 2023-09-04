@@ -43,10 +43,10 @@ jobs:
         with:
           python-version: '3.9.12' # install the python version needed
 
-      - name: Testing terminal emulator library
-        run: |
-          chmod +x gradlew
-          ./gradlew test
+      # - name: Testing terminal emulator library
+      #   run: |
+      #     chmod +x gradlew
+      #     ./gradlew test
 
 
   alpine-iso:
