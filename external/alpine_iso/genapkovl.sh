@@ -79,6 +79,9 @@ libc6-compat
 lynx
 nano
 nano-syntax
+openrc
+nodejs
+npm
 openssh-client
 openssl
 syslinux
