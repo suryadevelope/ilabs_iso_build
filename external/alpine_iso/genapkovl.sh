@@ -32,8 +32,8 @@ mkdir -p "$tmp"/etc
 ##############################################################################
 
 makefile root:root 0644 "$tmp"/etc/fstab <<EOF
-/dev/sr0        /media/sr0      iso9660  ro                         0 0
-shared_storage  /media/host     9p       trans=virtio,msize=262144  0 0
+/dev/cdrom      /media/cdrom    iso9660 ro                        0 0
+host_storage    /media/host     9p      trans=virtio,msize=262144 0 0
 EOF
 
 ##############################################################################
@@ -62,7 +62,7 @@ cat "${MKIMAGE_SCRIPT_DIR}"/files/motd | makefile root:root 0644 "$tmp"/etc/motd
 ## Enable only CD-ROM by default.
 mkdir -p "$tmp"/etc/apk
 makefile root:root 0644 "$tmp"/etc/apk/repositories <<EOF
-/media/sr0/apks
+/media/cdrom/apks
 http://dl-cdn.alpinelinux.org/alpine/edge/main
 http://dl-cdn.alpinelinux.org/alpine/edge/community
 #http://dl-cdn.alpinelinux.org/alpine/edge/testing
@@ -115,7 +115,7 @@ fi
 # Notify user when rootfs is placed on tmpfs which is default configuration.
 if [[ $(grep "[[:space:]]/[[:space:]]" /proc/mounts | cut -d' ' -f3) == "tmpfs" ]]; then
 	if [ "$SHLVL" = "1" ]; then
-		printf '\n\e[1;93mNOTE: \e[0;33mrunning live system, all changes will be discarded on reboot.\e[0m\n\n'
+		printf '\n\e[1;93mNOTE: \e[0;33mrootfs is mounted as tmpfs. Changes will not persist over reboots.\n\nThis is intended behavior for standard installation, do not worry.\n\nYou can reinstall system on disk or remove this notice from ~/.bashrc.\e[0m\n\n'
 	fi
 fi
 
@@ -219,8 +219,9 @@ mkdir -p "$tmp"/etc/apk/protected_paths.d
 makefile root:root 0644 "$tmp"/etc/apk/protected_paths.d/lbu.list <<'EOF'
 +root/.bash_profile
 +root/.bashrc
++root/guides
 +root/README.txt
-+usr/local
++usr/local/bin
 EOF
 
 ##############################################################################
@@ -479,19 +480,20 @@ cat "${MKIMAGE_SCRIPT_DIR}"/files/motd | sed -e $'s/\x1b\[[0-9;]*m//g' \
 cp "$tmp"/etc/skel/README.txt "$tmp"/root/README.txt
 chmod 600 "$tmp"/etc/skel/README.txt "$tmp"/root/README.txt
 
+# Linux system & Bash introduction.
+cp -a "${MKIMAGE_SCRIPT_DIR}"/files/skel/guides "$tmp"/etc/skel/guides
+cp -a "$tmp"/etc/skel/guides "$tmp"/root/guides
+
 ##############################################################################
 ##
-## /usr/local
+## /usr/local/bin
 ##
 ##############################################################################
 
-mkdir -p "$tmp"/usr/local/bin "$tmp"/usr/local/share
+mkdir -p "$tmp"/usr/local/bin
 cp "${MKIMAGE_SCRIPT_DIR}"/files/local-bin/* "$tmp"/usr/local/bin/
-cp -r "${MKIMAGE_SCRIPT_DIR}"/files/local-share/* "$tmp"/usr/local/share/
-chown -R root:root "$tmp"/usr/local
-find "$tmp"/usr/local -type d -exec chmod 755 "{}" \;
-find "$tmp"/usr/local/bin -type f -exec chmod 755 "{}" \;
-find "$tmp"/usr/local/share -type f -exec chmod 644 "{}" \;
+chown -R root:root "$tmp"/usr/local/bin
+chmod 755 "$tmp"/usr/local/bin/*
 
 ##############################################################################
 ##
