@@ -315,7 +315,6 @@ wpa_pairwise=CCMP
 
 EOF
 
-/etc/init.d/hostapd start
 # makefile root:root 0644 "$tmp"/etc/resolv.conf <<EOF
 # nameserver 8.8.8.8
 # nameserver 10.0.2.3
