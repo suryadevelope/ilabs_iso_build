@@ -248,22 +248,6 @@ makefile root:root 0644 "$tmp"/etc/hostname <<EOF
 vmconsole
 EOF
 
-## IP/hostname mappings.
-# makefile root:root 0644 "$tmp"/etc/hosts <<EOF
-# # IPv4.
-# 127.0.0.1   localhost.localdomain localhost
-# 127.0.1.1   vmconsole
-# 10.0.2.2    qemu-host
-# 10.0.2.3    qemu-dns
-
-# # IPv6.
-# ::1         ip6-localhost ip6-loopback
-# fe00::0     ip6-localnet
-# ff00::0     ip6-mcastprefix
-# ff02::1     ip6-allnodes
-# ff02::2     ip6-allrouters
-# ff02::3     ip6-allhosts
-# EOF
 
 ## Network interface configuration
 mkdir -p "$tmp"/etc/network
@@ -274,10 +258,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
 EOF
-# makefile root:root 0644 "$tmp"/etc/resolv.conf <<EOF
-# nameserver 8.8.8.8
-# nameserver 10.0.2.3
-# EOF
+
 
 ##############################################################################
 ##
