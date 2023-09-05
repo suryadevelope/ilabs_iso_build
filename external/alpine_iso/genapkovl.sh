@@ -77,7 +77,6 @@ e2fsprogs
 e2fsprogs-extra
 libc6-compat
 lynx
-openrc
 nodejs
 npm
 nano
@@ -251,22 +250,22 @@ makefile root:root 0644 "$tmp"/etc/hostname <<EOF
 vmconsole
 EOF
 
-# ## IP/hostname mappings.
-# makefile root:root 0644 "$tmp"/etc/hosts <<EOF
-# # IPv4.
-# 127.0.0.1   localhost.localdomain localhost
-# 127.0.1.1   vmconsole
-# 10.0.2.2    qemu-host
-# 10.0.2.3    qemu-dns
+## IP/hostname mappings.
+makefile root:root 0644 "$tmp"/etc/hosts <<EOF
+# IPv4.
+127.0.0.1   localhost.localdomain localhost
+127.0.1.1   vmconsole
+10.0.2.2    qemu-host
+10.0.2.3    qemu-dns
 
-# # IPv6.
-# ::1         ip6-localhost ip6-loopback
-# fe00::0     ip6-localnet
-# ff00::0     ip6-mcastprefix
-# ff02::1     ip6-allnodes
-# ff02::2     ip6-allrouters
-# ff02::3     ip6-allhosts
-# EOF
+# IPv6.
+::1         ip6-localhost ip6-loopback
+fe00::0     ip6-localnet
+ff00::0     ip6-mcastprefix
+ff02::1     ip6-allnodes
+ff02::2     ip6-allrouters
+ff02::3     ip6-allhosts
+EOF
 
 ## Network interface configuration
 mkdir -p "$tmp"/etc/network
@@ -275,50 +274,15 @@ auto lo
 iface lo inet loopback
 
 auto eth0
-iface eth0 inet dhcp
-
-auto br0
-iface br0 inet dhcp
-  hostname alpine
-  bridge-ports eth0
-
+iface eth0 inet static
+    address 10.0.2.15
+    netmask 255.255.255.0
+    gateway 10.0.2.2
 EOF
-
-mkdir -p "$tmp"/etc/hostapd
-makefile root:root 0644 "$tmp"/etc/hostapd/hostapd.wpa_psk <<EOF
-00:00:00:00:00:00 PASSPHRASE
+makefile root:root 0644 "$tmp"/etc/resolv.conf <<EOF
+nameserver 8.8.8.8
+nameserver 10.0.2.3
 EOF
-
-mkdir -p "$tmp"/etc/hostapd
-makefile root:root 0644 "$tmp"/etc/hostapd/hostapd.conf <<EOF
-interface=wlan0
-bridge=br0
-driver=hostap
-logger_syslog=-1
-logger_syslog_level=2
-logger_stdout=-1
-logger_stdout_level=2
-debug=0
-dump_file=/tmp/hostapd.dump
-ctrl_interface=/var/run/hostapd
-ctrl_interface_group=0
-ssid=SecureSSID
-#macaddr_acl=1
-#accept_mac_file=/etc/hostapd/accept
-auth_algs=3
-eapol_key_index_workaround=0
-eap_server=0
-wpa=3
-wpa_psk_file=/etc/hostapd/hostapd.wpa_psk
-wpa_key_mgmt=WPA-PSK
-wpa_pairwise=CCMP
-
-EOF
-
-# makefile root:root 0644 "$tmp"/etc/resolv.conf <<EOF
-# nameserver 8.8.8.8
-# nameserver 10.0.2.3
-# EOF
 
 ##############################################################################
 ##
