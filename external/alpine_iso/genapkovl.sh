@@ -77,6 +77,7 @@ e2fsprogs
 e2fsprogs-extra
 libc6-compat
 lynx
+openrc
 nodejs
 npm
 nano
