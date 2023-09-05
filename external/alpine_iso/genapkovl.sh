@@ -267,7 +267,7 @@ EOF
 # ff02::2     ip6-allrouters
 # ff02::3     ip6-allhosts
 # EOF
-apk add bridge hostapd wireless-tools wpa_supplicant
+
 ## Network interface configuration
 mkdir -p "$tmp"/etc/network
 makefile root:root 0644 "$tmp"/etc/network/interfaces <<EOF

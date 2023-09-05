@@ -62,3 +62,7 @@ wpa_supplicant-doc
 zlib-doc
 nodejs
 npm
+bridge
+hostapd
+wireless-tools
+wpa_supplicant
