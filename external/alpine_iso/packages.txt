@@ -33,10 +33,19 @@ openntpd
 openntpd-doc
 openrc
 openrc-doc
+openssh
+openssh-client
+openssh-doc
+openssl
+openssl-doc
 p11-kit-doc
 popt-doc
 readline-doc
 sfdisk
+ssmtp
+ssmtp-doc
+sudo
+sudo-doc
 syslinux
 syslinux-doc
 tmux
@@ -53,4 +62,7 @@ wpa_supplicant-doc
 zlib-doc
 nodejs
 npm
+bridge
 hostapd
+wireless-tools
+wpa_supplicant
