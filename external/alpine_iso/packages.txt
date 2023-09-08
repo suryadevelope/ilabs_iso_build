@@ -66,3 +66,4 @@ bridge
 hostapd
 wireless-tools
 wpa_supplicant
+ufw
