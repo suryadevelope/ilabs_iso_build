@@ -80,6 +80,7 @@ lynx
 nodejs
 npm
 nano
+ufw
 openrc
 nano-syntax
 openssh-client
