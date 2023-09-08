@@ -72,6 +72,7 @@ EOF
 makefile root:root 0644 "$tmp"/etc/apk/world <<EOF
 alpine-base
 bash
+openrc
 curl
 e2fsprogs
 e2fsprogs-extra
@@ -80,7 +81,6 @@ lynx
 nodejs
 npm
 nano
-openrc
 nano-syntax
 openssh-client
 openssl

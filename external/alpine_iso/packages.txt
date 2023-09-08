@@ -2,12 +2,14 @@
 apk-tools-doc
 bash
 bash-doc
+openrc
+openrc-doc
 blkid
 busybox
 busybox-doc
 curl
-openrc
-openrc-doc
+sfdisk
+nano
 wget
 nodejs
 npm
