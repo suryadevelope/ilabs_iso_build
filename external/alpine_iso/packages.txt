@@ -4,7 +4,6 @@ bash
 bash-doc
 blkid
 openrc
-openrc
 busybox
 busybox-doc
 curl
@@ -13,4 +12,7 @@ nano
 wget
 nodejs
 npm
+network-extras
+openntpd
+openntpd-doc
 
