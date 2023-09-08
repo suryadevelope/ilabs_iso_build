@@ -4,7 +4,6 @@ bash
 bash-doc
 blkid
 openrc
-openrc-doc
 busybox
 busybox-doc
 curl

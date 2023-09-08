@@ -80,15 +80,15 @@ lynx
 nodejs
 npm
 nano
+openrc
 nano-syntax
 openssh-client
 openssl
 syslinux
 tmux
 vim
-openrc
-openrc-doc
 EOF
+apk add openrc
 
 ##############################################################################
 ##
