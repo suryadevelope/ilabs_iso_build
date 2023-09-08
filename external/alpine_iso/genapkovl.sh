@@ -81,12 +81,13 @@ nodejs
 npm
 nano
 nano-syntax
-openrc
 openssh-client
 openssl
 syslinux
 tmux
 vim
+openrc
+openrc-doc
 EOF
 
 ##############################################################################
