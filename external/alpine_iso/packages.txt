@@ -8,6 +8,7 @@ busybox-doc
 curl
 openrc
 openrc-doc
+wget
 nodejs
 npm
 
