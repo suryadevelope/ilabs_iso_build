@@ -12,4 +12,5 @@ nano
 wget
 nodejs
 npm
+python3
 

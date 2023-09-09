@@ -73,6 +73,7 @@ makefile root:root 0644 "$tmp"/etc/apk/world <<EOF
 alpine-base
 bash
 curl
+apk-tools
 nodejs
 npm
 nano
@@ -81,6 +82,7 @@ nano-syntax
 syslinux
 tmux
 vim
+python3
 EOF
 
 
