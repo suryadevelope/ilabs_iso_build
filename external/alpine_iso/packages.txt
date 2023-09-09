@@ -12,9 +12,4 @@ nano
 wget
 nodejs
 npm
-network-extras
-openntpd
-openntpd-doc
-wireless-tools-doc
-wpa_supplicant-doc
 
