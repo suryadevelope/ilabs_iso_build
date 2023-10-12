@@ -83,6 +83,9 @@ syslinux
 tmux
 vim
 python3
+gcc
+libc-dev
+libffi-dev
 EOF
 
 ##############################################################################

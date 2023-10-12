@@ -8,7 +8,10 @@ COPY /extras /custom-packages/extras
 
 RUN apk upgrade && \
    apk add alpine-sdk build-base apk-tools alpine-conf openssl \
-        busybox fakeroot syslinux xorriso squashfs-tools sudo 
+        busybox fakeroot syslinux xorriso squashfs-tools sudo python3-dev \
+                          gcc \
+                          libc-dev \
+                          libffi-dev
 RUN adduser -s /bin/ash -G abuild -D -h /home/build -u ${USER_ID} build 
 RUN mkdir -p /home/build/.abuild && chown build /home/build/.abuild
 RUN openssl aes-256-cbc -d -in /abuild-keys/vmconsole-dev.rsa.enc \
