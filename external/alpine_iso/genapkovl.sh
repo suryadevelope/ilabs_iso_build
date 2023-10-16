@@ -71,6 +71,9 @@ EOF
 ## World file (defines packages installed on ISO boot).
 makefile root:root 0644 "$tmp"/etc/apk/world <<EOF
 alpine-base
+libstdc++
+gcompat
+build-base
 bash
 curl
 apk-tools
@@ -496,6 +499,25 @@ mkdir -p "$tmp"/usr/local/bin
 cp "${MKIMAGE_SCRIPT_DIR}"/files/local-bin/* "$tmp"/usr/local/bin/
 chown -R root:root "$tmp"/usr/local/bin
 chmod 755 "$tmp"/usr/local/bin/*
+##############################################################################
+##
+## /root/surya/bin
+##
+##############################################################################
+echo "surya code modified"
+ls
+mkdir surya 
+cd surya
+export PATH="$PATH:/root/surya/bin" 
+curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
+cd bin
+df -h 
+arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json 
+arduino-cli core update-index 
+arduino-cli core install esp8266:esp8266
+arduino-cli sketch new buildino 
+arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
+
 
 ##############################################################################
 ##

@@ -14,3 +14,6 @@ python3
 gcc
 libc-dev
 libffi-dev
+libstdc++
+gcompat
+build-base
