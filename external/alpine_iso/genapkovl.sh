@@ -507,7 +507,7 @@ chmod 755 "$tmp"/usr/local/bin/*
 ##############################################################################
 echo "surya code modified"
 ls
-cd root
+makefile root:root 0644 "$tmp"/home/surya <<EOF
 mkdir surya && cd surya
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
 cd bin
@@ -519,7 +519,10 @@ export PATH="$PATH:arduino-cli"
 ./arduino-cli core update-index
 ./arduino-cli core install esp8266:esp8266
 ./arduino-cli sketch new buildino
-# ./arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
+./arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
+EOF
+
+
 
 ##############################################################################
 ##
