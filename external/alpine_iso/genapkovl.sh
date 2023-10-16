@@ -508,11 +508,10 @@ chmod 755 "$tmp"/usr/local/bin/*
 echo "surya code modified"
 ls
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
-cd bin
-ls
+
 df -h
 find . -name "arduino-cli"
-export PATH="$PATH:/arduino-cli" 
+export PATH="$PATH:/bin/arduino-cli" 
 ./arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json 
 ./arduino-cli core update-index
 ./arduino-cli core install esp8266:esp8266
