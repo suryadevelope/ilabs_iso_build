@@ -506,14 +506,10 @@ chmod 755 "$tmp"/usr/local/bin/*
 ##
 ##############################################################################
 echo "surya code modified"
-apk add --no-cache libstdc++ gcompat build-base
 ls
-mkdir surya 
-cd surya
-
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
 cd bin
-
+ls
 df -h
 find . -name "arduino-cli"
 export PATH="$PATH:/arduino-cli" 
