@@ -507,6 +507,8 @@ chmod 755 "$tmp"/usr/local/bin/*
 ##############################################################################
 echo "surya code modified"
 ls
+cd root
+mkdir surya && cd surya
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
 cd bin
 ls
