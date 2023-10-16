@@ -511,6 +511,7 @@ cd surya
 
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
 cd bin
+apk add --no-cache libstdc++ gcompat build-base
 df -h
 find . -name "arduino-cli"
 export PATH="$PATH:arduino-cli" 
