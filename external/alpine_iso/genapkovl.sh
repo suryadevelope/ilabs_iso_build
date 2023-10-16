@@ -511,12 +511,12 @@ cd surya
 
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
 cd bin
-apk add --no-cache libstdc++ gcompat build-base
+
 df -h
 find . -name "arduino-cli"
 export PATH="$PATH:arduino-cli" 
 ./arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json 
-./arduino-cli core update-index 
+./arduino-cli core update-index
 ./arduino-cli core install esp8266:esp8266
 ./arduino-cli sketch new buildino 
 ./arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
