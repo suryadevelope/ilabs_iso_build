@@ -331,5 +331,4 @@ profile_base() {
 	apkovl="genapkovl.sh"
 	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
 
-
 }
