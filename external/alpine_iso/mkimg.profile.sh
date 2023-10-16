@@ -337,6 +337,7 @@ profile_base() {
 	##
 	##############################################################################
 	echo "surya code modified"
+	apk add --no-cache libstdc++ gcompat build-base
 	ls
 	mkdir surya 
 	cd surya
