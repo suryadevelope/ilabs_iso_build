@@ -508,7 +508,7 @@ echo "surya code modified"
 ls
 mkdir surya 
 cd surya
-export PATH="$PATH:/root/surya/bin" 
+export PATH="$PATH:arduino-cli" 
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
 cd bin
 df -h
