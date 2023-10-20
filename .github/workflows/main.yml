@@ -100,10 +100,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y qemu-system-x86
+      - name: Copy Alpine ISO
+        run: |
+          # Copy the Alpine Linux ISO from your project directory to the working directory
+          cp ./app/src/main/assets/alpine-x86_64.iso ./alpine.iso
   
       - name: Run QEMU to load the ISO
         run: |
-          qemu-system-x86_64 -cdrom ./app/src/main/assets/alpine-x86_64.iso -boot d -m 1G
+          qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G
   
       - name: Install Libraries or Packages
         run: |
