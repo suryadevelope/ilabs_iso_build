@@ -350,4 +350,7 @@ profile_base() {
 	./arduino-cli sketch new buildino
 	./arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
 
+	cd ..
+	
+
 }
