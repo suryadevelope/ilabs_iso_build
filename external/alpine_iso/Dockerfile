@@ -11,7 +11,8 @@ RUN apk upgrade && \
         busybox fakeroot syslinux xorriso squashfs-tools sudo python3-dev \
                           gcc \
                           libc-dev \
-                          libffi-dev
+                          libffi-dev\
+                          libstdc++ gcompat build-base
 RUN adduser -s /bin/ash -G abuild -D -h /home/build -u ${USER_ID} build 
 RUN mkdir -p /home/build/.abuild && chown build /home/build/.abuild
 RUN openssl aes-256-cbc -d -in /abuild-keys/vmconsole-dev.rsa.enc \
