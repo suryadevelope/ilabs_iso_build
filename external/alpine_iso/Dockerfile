@@ -13,6 +13,8 @@ RUN apk upgrade && \
                           libc-dev \
                           libffi-dev\
                           libstdc++ gcompat build-base
+
+
 RUN adduser -s /bin/ash -G abuild -D -h /home/build -u ${USER_ID} build 
 RUN mkdir -p /home/build/.abuild && chown build /home/build/.abuild
 RUN openssl aes-256-cbc -d -in /abuild-keys/vmconsole-dev.rsa.enc \
@@ -30,6 +32,21 @@ RUN echo "PACKAGER_PRIVKEY=/home/build/.abuild/vmconsole-dev.rsa" > \
 RUN chown build /home/build/.abuild/abuild.conf
 RUN chmod 644 /home/build/.abuild/abuild.conf
 RUN chown -Rh build:abuild /custom-packages
+
+RUN echo "surya code modified"
+RUN ls
+RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
+RUN cd bin
+RUN ls
+RUN df -h
+RUN find . -name "arduino-cli"
+RUN export PATH="$PATH:arduino-cli" 
+RUN ./arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json 
+RUN ./arduino-cli core update-index
+RUN ./arduino-cli core install esp8266:esp8266
+RUN ./arduino-cli sketch new buildino
+RUN ./arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
+
 RUN echo "build ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/build
 
 USER build
