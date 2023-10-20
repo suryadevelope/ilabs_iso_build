@@ -107,10 +107,15 @@ jobs:
   
       - name: Run QEMU to load the ISO
         run: |
-          qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
+          # Use 'expect' to automatically send the 'root' username
+          expect -c "
+          spawn qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
+          expect \"Login:\"
+          send \"root\n\"
+          interact
+          "
         env:
           QEMU_AUDIO_DRV: none
-  
       - name: Install Libraries or Packages
         run: |
           # Use the package manager for Alpine, for example, `apk`
