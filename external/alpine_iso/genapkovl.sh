@@ -500,6 +500,10 @@ cp "${MKIMAGE_SCRIPT_DIR}"/files/local-bin/* "$tmp"/usr/local/bin/
 chown -R root:root "$tmp"/usr/local/bin
 chmod 755 "$tmp"/usr/local/bin/*
 
+
+
+
+
 ##############################################################################
 ##
 ## END

@@ -8,6 +8,7 @@
 # FIXME: --release: cp/mv images to REPODIR/$ARCH/releases/
 # FIXME: --update-latest: rewrite latest-releases.yaml with this build
 
+# third layer
 set -e
 
 # get abuild configurables
