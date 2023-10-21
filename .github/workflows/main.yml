@@ -113,7 +113,7 @@ jobs:
             expect "login:"
             send "root\r"
             expect "Welcome to Alpine Linux"
-            send 'find . -name "arduino-cli" && mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base\r'
+            send 'cd .. && find . -name "arduino-cli" && mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base\r'
             interact
           '
         env:
