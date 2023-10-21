@@ -121,16 +121,10 @@ jobs:
       
       - name: Install Libraries or Packages
         run: |
-          # Use the package manager for Alpine, for example, `apk`
-          # Install the libraries/packages you need
-          # Example:
-          mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base && export PATH="$PATH:/root/surya/bin" && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && df -h && arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json && arduino-cli core update-index && arduino-cli core install esp8266:esp8266
+          mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base && export PATH="$PATH:/root/surya/bin" && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && df -h && arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json && arduino-cli core update-index && arduino-cli core install esp8266:esp8266 && cd ..
   
       - name: Export ISO
         run: |
-          # Create a new ISO with the modified contents
-          # Replace `my_new_iso.iso` with your desired ISO name
-          # Adjust the source and destination directories accordingly
           mkisofs -o my_new_iso.iso -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V alpine_new_iso ./
   
       - name: Upload New ISO
