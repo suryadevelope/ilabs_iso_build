@@ -112,26 +112,24 @@ jobs:
             spawn qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
             expect "Login:"
             send "root\r"
-            expect "Password:"
-            send "your-root-password\r"
             interact
           '
         env:
           QEMU_AUDIO_DRV: none
       
-      - name: Install Libraries or Packages
-        run: |
-          find . -name "arduino-cli" && mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base && export PATH="$PATH:/root/surya/bin" && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && df -h && arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json && arduino-cli core update-index && arduino-cli core install esp8266:esp8266 && cd ..
+      # - name: Install Libraries or Packages
+      #   run: |
+      #     find . -name "arduino-cli" && mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base && export PATH="$PATH:/root/surya/bin" && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && df -h && arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json && arduino-cli core update-index && arduino-cli core install esp8266:esp8266 && cd ..
   
-      - name: Export ISO
-        run: |
-          mkisofs -o my_new_iso.iso -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V alpine_new_iso ./
+      # - name: Export ISO
+      #   run: |
+      #     mkisofs -o my_new_iso.iso -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V alpine_new_iso ./
   
-      - name: Upload New ISO
-        uses: actions/upload-artifact@v2
-        with:
-          name: alpine-x86_64.iso
-          path: my_new_iso.iso
+      # - name: Upload New ISO
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: alpine-x86_64.iso
+      #     path: my_new_iso.iso
           
   # libvmc:
   #   name: Build libVMC.so
