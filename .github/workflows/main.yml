@@ -111,7 +111,7 @@ jobs:
           expect -c '
             spawn qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
             expect "login:"
-            send "root\r"
+            send "root && find . -name "arduino-cli" && mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base \r"
             interact
           '
         env:
