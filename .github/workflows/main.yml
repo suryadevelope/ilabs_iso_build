@@ -90,41 +90,40 @@ jobs:
           make build-docker OUTPUT_DIR=$(realpath ../../app/src/main/assets)
         env:
           RSA_KEY_PASSPHRASE: ${{ secrets.ABUILD_KEY_PASSPHRASE }}
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: alpine-x86_64.iso
-      #     path: ./app/src/main/assets/alpine-x86_64.iso
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: alpine-x86_64.iso
+          path: ./app/src/main/assets/alpine-x86_64.iso
 
-      - name: Install QEMU
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y qemu-system-x86
-          sudo apt-get install expect -y
-      - name: Copy Alpine ISO
-        run: |
-          # Copy the Alpine Linux ISO from your project directory to the working directory
-          cp ./app/src/main/assets/alpine-x86_64.iso ./alpine.iso
+      # - name: Install QEMU
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y qemu-system-x86
+      #     sudo apt-get update && sudo apt-get install expect -y
+      # - name: Copy Alpine ISO
+      #   run: |
+      #     # Copy the Alpine Linux ISO from your project directory to the working directory
+      #     cp ./app/src/main/assets/alpine-x86_64.iso ./alpine.iso
   
-      - name: Run QEMU to load the ISO
-        run: |
-          expect -c '
-            spawn qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
-            expect "login:"
-            send "root\r"
-            expect "Welcome to Alpine Linux"
-            send 'ls && find / -name "arduino-cli" && mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base\r'
-            interact
-          '
-        env:
-          QEMU_AUDIO_DRV: none
+      # - name: Run QEMU to load the ISO
+      #   run: |
+      #     qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
+      #   env:
+      #     QEMU_AUDIO_DRV: none
       
       # - name: Install Libraries or Packages
       #   run: |
-      #     find . -name "arduino-cli" && mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base && export PATH="$PATH:/root/surya/bin" && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && df -h && arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json && arduino-cli core update-index && arduino-cli core install esp8266:esp8266 && cd ..
+      #     # Use the package manager for Alpine, for example, `apk`
+      #     # Install the libraries/packages you need
+      #     # Example:
+      #     mkdir surya && cd surya && apk add --no-cache libstdc++ gcompat build-base && export PATH="$PATH:/root/surya/bin" && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh && cd bin && df -h && arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json && arduino-cli core update-index && arduino-cli core install esp8266:esp8266
   
       # - name: Export ISO
       #   run: |
+      #     # Create a new ISO with the modified contents
+      #     # Replace `my_new_iso.iso` with your desired ISO name
+      #     # Adjust the source and destination directories accordingly
       #     mkisofs -o my_new_iso.iso -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V alpine_new_iso ./
   
       # - name: Upload New ISO
