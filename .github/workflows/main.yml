@@ -100,6 +100,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y qemu-system-x86
+          sudo apt-get install expect -y
       - name: Copy Alpine ISO
         run: |
           # Copy the Alpine Linux ISO from your project directory to the working directory
@@ -107,15 +108,17 @@ jobs:
   
       - name: Run QEMU to load the ISO
         run: |
-          # Use 'expect' to automatically send the 'root' username
-          expect -c "
-          spawn qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
-          expect \"Login:\"
-          send \"root\n\"
-          interact
-          "
+          expect -c '
+            spawn qemu-system-x86_64 -cdrom alpine.iso -boot d -m 1G -nographic
+            expect "Login:"
+            send "root\r"
+            expect "Password:"
+            send "your-root-password\r"
+            interact
+          '
         env:
           QEMU_AUDIO_DRV: none
+      
       - name: Install Libraries or Packages
         run: |
           # Use the package manager for Alpine, for example, `apk`
