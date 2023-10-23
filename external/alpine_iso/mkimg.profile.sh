@@ -192,6 +192,26 @@ grub_gen_earlyconf() {
 	EOF
 }
 
+# Install Arduino CLI
+install_arduino_cli() {
+    msg "Installing Arduino CLI"
+    wget -O arduino-cli https://downloads.arduino.cc/arduino-cli/arduino-cli_0.34.2_Linux_64bit.tar.gz
+    tar -xzf arduino-cli
+    sudo mv arduino-cli /usr/local/bin/
+	find . -name "arduino-cli"
+	sudo echo 'export PATH="$PATH:/usr/local/bin"'
+	arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json
+	msg "Updating Arduino core index"
+	arduino-cli core update-index
+	arduino-cli core install esp8266:esp8266
+	arduino-cli sketch new buildino
+	arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
+
+}
+
+install_arduino_cli
+
+
 build_grub_efi() {
 	local _format="$1"
 	local _efi="$2"
@@ -330,27 +350,5 @@ profile_base() {
 	hostname="vmconsole"
 	apkovl="genapkovl.sh"
 	apks="$(grep -E '^[[:space:]]*[A-Za-z0-9]' ./packages.txt)"
-
-	##############################################################################
-	##
-	## /root/surya/bin
-	##
-	##############################################################################
-	echo "surya code modified"
-	ls
-	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh 
-	cd bin
-	ls
-	df -h
-	find . -name "arduino-cli"
-	export PATH="$PATH:arduino-cli" 
-	./arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json 
-	./arduino-cli core update-index
-	./arduino-cli core install esp8266:esp8266
-	./arduino-cli sketch new buildino
-	./arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
-
-	cd ..
-
 
 }

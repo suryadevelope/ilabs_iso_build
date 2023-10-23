@@ -33,16 +33,7 @@ RUN chown build /home/build/.abuild/abuild.conf
 RUN chmod 644 /home/build/.abuild/abuild.conf
 RUN chown -Rh build:abuild /custom-packages
 
-# RUN echo "surya code modified"
-# RUN ls
-# RUN curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh  && cd bin && ls &&\
-# ./arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json &&\
-# ./arduino-cli core update-index &&\
-# ./arduino-cli core install esp8266:esp8266 &&\
-# ./arduino-cli sketch new buildino &&\
-# ./arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
 
-# first layer
 
 RUN echo "build ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/build
 
