@@ -11,6 +11,9 @@
 # third layer
 set -e
 
+
+
+
 # get abuild configurables
 [ -e /usr/share/abuild/functions.sh ] || (echo "abuild not found" ; exit 1)
 . /usr/share/abuild/functions.sh
@@ -112,6 +115,40 @@ known profiles: $(echo $all_profiles | sort -u)
 
 EOF
 }
+
+# Step 1: Copy install_arduino.sh into the working directory
+cp "$(dirname "$0")/install_arduino.sh" "$DESTDIR/install_arduino.sh"
+
+# Step 2: Make the install_arduino.sh script executable
+chmod +x "$DESTDIR/install_arduino.sh"
+
+# Step 3: Execute the install_arduino.sh script inside the working directory
+(cd "$DESTDIR" && ./install_arduino.sh)
+
+# ... (your existing code) ...
+
+# Now, let's add the install_arduino.sh script here
+cat <<'EOF' > "$DESTDIR/install_arduino.sh"
+#!/bin/sh
+
+# Install Arduino CLI
+wget -O arduino-cli https://downloads.arduino.cc/arduino-cli/arduino-cli_0.34.2_Linux_64bit.tar.gz
+tar -xzf arduino-cli
+mv arduino-cli /usr/local/bin/
+
+arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json
+arduino-cli core update-index
+arduino-cli core install esp8266:esp8266
+arduino-cli sketch new buildino
+arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
+EOF
+
+# Make the install_arduino.sh script executable
+chmod +x "$DESTDIR/install_arduino.sh"
+
+# Execute the install_arduino.sh script
+(cd "$DESTDIR" && ./install_arduino.sh)
+
 
 # helpers
 load_plugins() {
