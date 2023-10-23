@@ -119,9 +119,9 @@ EOF
 
 # Install Arduino CLI
 msg "Installing Arduino CLI"
-wget -O arduino-cli https://downloads.arduino.cc/arduino-cli/arduino-cli_0.34.2_Linux_64bit.tar.gz
-tar -xzf arduino-cli
-mv arduino-cli /usr/local/bin/
+curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+ls
+find . -name "arduino-cli"
 
 # Configure Arduino CLI
 msg "Configuring Arduino CLI"
