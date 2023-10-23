@@ -117,33 +117,24 @@ EOF
 }
 
 
+
 # Install Arduino CLI
-msg "Installing Arduino CLI"
-curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-ls
-find . -name "arduino-cli"
-export PATH="$PATH:./bin/arduino-cli"
+install_arduino_cli() {
+    msg "Installing Arduino CLI"
+    wget -O arduino-cli https://downloads.arduino.cc/arduino-cli/arduino-cli_0.34.2_Linux_64bit.tar.gz
+    tar -xzf arduino-cli
+    mv arduino-cli /usr/local/bin/
+}
 
-# Configure Arduino CLI
-msg "Configuring Arduino CLI"
-./bin/arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json
+# Add Arduino CLI to user's PATH
+add_arduino_to_path() {
+    echo 'export PATH="/usr/local/bin:$PATH"' >> /etc/profile
+}
 
-# Update core index
-msg "Updating Arduino core index"
-./bin/arduino-cli core update-index
+install_arduino_cli
+add_arduino_to_path
 
-# Install the ESP8266 core
-msg "Installing ESP8266 core for Arduino"
-./bin/arduino-cli core install esp8266:esp8266
-
-# Create a new Arduino sketch
-msg "Creating a new Arduino sketch"
-./bin/arduino-cli sketch new buildino
-
-# Compile the Arduino sketch
-msg "Compiling the Arduino sketch"
-./bin/arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
-
+arduino-cli --version
 
 # helpers
 load_plugins() {
