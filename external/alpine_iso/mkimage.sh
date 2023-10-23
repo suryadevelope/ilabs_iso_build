@@ -116,16 +116,7 @@ known profiles: $(echo $all_profiles | sort -u)
 EOF
 }
 
-# Step 1: Copy install_arduino.sh into the working directory
-cp "$(dirname "$0")/install_arduino.sh" "$DESTDIR/install_arduino.sh"
 
-# Step 2: Make the install_arduino.sh script executable
-chmod +x "$DESTDIR/install_arduino.sh"
-
-# Step 3: Execute the install_arduino.sh script inside the working directory
-(cd "$DESTDIR" && ./install_arduino.sh)
-
-# ... (your existing code) ...
 
 # Now, let's add the install_arduino.sh script here
 cat <<'EOF' > "$DESTDIR/install_arduino.sh"
