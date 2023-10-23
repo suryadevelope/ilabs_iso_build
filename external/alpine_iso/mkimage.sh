@@ -117,28 +117,31 @@ EOF
 }
 
 
-
-# Now, let's add the install_arduino.sh script here
-cat <<'EOF' > "$DESTDIR/install_arduino.sh"
-#!/bin/sh
-
 # Install Arduino CLI
+msg "Installing Arduino CLI"
 wget -O arduino-cli https://downloads.arduino.cc/arduino-cli/arduino-cli_0.34.2_Linux_64bit.tar.gz
 tar -xzf arduino-cli
 mv arduino-cli /usr/local/bin/
 
+# Configure Arduino CLI
+msg "Configuring Arduino CLI"
 arduino-cli config init --additional-urls https://arduino.esp8266.com/stable/package_esp8266com_index.json
+
+# Update core index
+msg "Updating Arduino core index"
 arduino-cli core update-index
+
+# Install the ESP8266 core
+msg "Installing ESP8266 core for Arduino"
 arduino-cli core install esp8266:esp8266
+
+# Create a new Arduino sketch
+msg "Creating a new Arduino sketch"
 arduino-cli sketch new buildino
+
+# Compile the Arduino sketch
+msg "Compiling the Arduino sketch"
 arduino-cli compile -b esp8266:esp8266:nodemcuv2 buildino/buildino.ino --verbose
-EOF
-
-# Make the install_arduino.sh script executable
-chmod +x "$DESTDIR/install_arduino.sh"
-
-# Execute the install_arduino.sh script
-(cd "$DESTDIR" && ./install_arduino.sh)
 
 
 # helpers
