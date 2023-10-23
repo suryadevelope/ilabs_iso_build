@@ -123,7 +123,7 @@ install_arduino_cli() {
     msg "Installing Arduino CLI"
     wget -O arduino-cli https://downloads.arduino.cc/arduino-cli/arduino-cli_0.34.2_Linux_64bit.tar.gz
     tar -xzf arduino-cli
-    mv arduino-cli /usr/local/bin/
+    sudo mv arduino-cli /usr/local/bin/
 	find . -name "arduino-cli"
 }
 
