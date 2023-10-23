@@ -129,7 +129,7 @@ install_arduino_cli() {
 
 # Add Arduino CLI to user's PATH
 add_arduino_to_path() {
-    echo 'export PATH="/usr/local/bin:$PATH"' >> /etc/profile
+   sudo echo 'export PATH="$PATH:/usr/local/bin"'
 }
 
 install_arduino_cli
